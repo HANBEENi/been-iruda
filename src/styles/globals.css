@@ -10,6 +10,25 @@
   --text-color: #fff;
 }
 
+@font-face {
+  font-family: "GmarketSans";
+  src: url("/fonts/GmarketSansTTFMedium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Knewave";
+  src: url("/fonts/Knewave-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "RockSalt";
+  src: url("/fonts/RockSalt-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -18,6 +37,7 @@
 
 body {
   background-color: var(--background-color);
+  font-family: "GmarketSans", sans-serif;
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
 }
