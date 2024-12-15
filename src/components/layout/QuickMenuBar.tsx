@@ -77,7 +77,7 @@ const QuickMenuBar = () => {
         </Title>
         <Icon>
           <div
-            style={{ backgroundImage: "url(images/quickMenubar/heart02.png)" }}
+            style={{ backgroundImage: "url(images/quickMenubar/heart.png)" }}
           />
         </Icon>
         {/* 하트 애니메이션 렌더링 */}
@@ -87,7 +87,7 @@ const QuickMenuBar = () => {
             style={{
               left: "50%", // 버튼의 중앙
               top: "-20px", // 버튼 바로 위
-              backgroundImage: "url(images/quickMenubar/heart02.png)",
+              backgroundImage: "url(images/quickMenubar/heart.png)",
             }}
           />
         ))}
