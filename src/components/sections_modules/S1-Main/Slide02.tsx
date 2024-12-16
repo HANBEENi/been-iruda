@@ -1,13 +1,13 @@
 "use client";
 
 import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
-import { useFrame, Canvas, useThree } from "@react-three/fiber";
+import { useFrame, Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import * as THREE from "three";
 
 const AnimatedModel = ({ scale }: { scale: number }) => {
-  const gltf = useGLTF("models/portfolio3D.gltf");
+  const gltf = useGLTF("models/Text3D_portfolio/portfolio3D.gltf");
   const mixer = useRef<THREE.AnimationMixer | null>(null);
 
   // 애니메이션 로직
@@ -83,7 +83,7 @@ const MainSlide02 = () => {
               maxDistance={10} // 최대 줌아웃 거리
               minDistance={2} // 최소 줌인 거리
               enableZoom={false} // 줌 비활성화
-              enableRotate={false} // 회전 비활성화
+              enableRotate={true} // 회전 비활성화
               enablePan={false} // 이동 비활성화
             />
             <ambientLight intensity={1} />

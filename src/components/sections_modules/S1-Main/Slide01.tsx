@@ -7,7 +7,7 @@ import { styled } from "styled-components";
 import * as THREE from "three";
 
 const AnimatedModel = () => {
-  const gltf = useGLTF("models/beeniruda3D.gltf");
+  const gltf = useGLTF("models/Text3D_beeniruda/beeniruda3D.gltf");
   const mixer = useRef<THREE.AnimationMixer | null>(null);
 
   // 애니메이션 로직
