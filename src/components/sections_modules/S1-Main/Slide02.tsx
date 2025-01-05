@@ -123,9 +123,9 @@ const Contents = styled.div`
     max-width: 590px;
     max-height: 391.7px;
 
-    background-image: url("/images/beenirudaBlack.png");
+    background-image: url("/images/I03_BeenirudaCharacterSet/beenirudaBlack.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
 
     & .title {

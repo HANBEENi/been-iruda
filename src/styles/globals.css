@@ -9,9 +9,20 @@
   --background-color: #000;
   --text-color: #fff;
 }
-
 @font-face {
   font-family: "GmarketSans";
+  src: url("/fonts/GmarketSansMedium.otf") format("opentype");
+  font-weight: lighter;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GmarketSansTTFLight";
+  src: url("/fonts/GmarketSansTTFLight.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GmarketSansTTF";
   src: url("/fonts/GmarketSansTTFMedium.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;

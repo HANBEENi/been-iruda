@@ -1,5 +1,13 @@
 "use client";
 
+/**
+ * [TODO]
+ * 반응형 작업 해야함(PC, 태블릿, 모바일)
+ *
+ * - Slide01에서 화살표+KIM HANBEEN 크기 조절
+ * - 반응형 해야할것 살펴보고 작업하기
+ */
+
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
@@ -8,17 +16,17 @@ import MainSlide02 from "../sections_modules/S1-Main/Slide02";
 
 // 배경 이미지 배열
 const backgroundImages = [
-  "/images/backgroundColor/color00.png",
-  "/images/backgroundColor/color01.png",
-  "/images/backgroundColor/color03.png",
-  "/images/backgroundColor/color06.png",
-  "/images/backgroundColor/color07.png",
+  "/images/I02_BackgroundColor/color00.png",
+  "/images/I02_BackgroundColor/color01.png",
+  "/images/I02_BackgroundColor/color03.png",
+  "/images/I02_BackgroundColor/color06.png",
+  "/images/I02_BackgroundColor/color07.png",
 ];
 
 // 슬라이드 배열
 const slides = [<MainSlide01 key="1" />, <MainSlide02 key="2" />];
 
-const MainSection = () => {
+const MainSection = ({ isActive }: { isActive: boolean }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
   const [fadeOut, setFadeOut] = useState<boolean>(false);
@@ -97,7 +105,7 @@ const Layout = styled(motion.div)`
   overflow: hidden;
 
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 `;
 const BackgroundLayer = styled.div<{ $image: string; $fadeOut: boolean }>`
   position: absolute;
@@ -122,5 +130,5 @@ const SlideContainer = styled(motion.div)`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 `;

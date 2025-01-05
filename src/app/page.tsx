@@ -9,6 +9,9 @@ import ResumeSection from "@/components/sections/S2-Resume";
 import SkillsSection from "@/components/sections/S3-Skills";
 import ProjectsSection from "@/components/sections/S4-Projects";
 import ContactSection from "@/components/sections/S5-Contact";
+import QuickMenuBar from "@/components/layout/QuickMenuBar";
+import Header from "@/components/layout/Header";
+import TopButton from "@/components/layout/TopButton";
 
 const sections = ["main", "resume", "skills", "projects", "contact"];
 
@@ -36,7 +39,7 @@ const MainPage = () => {
 
       setTimeout(() => {
         isScrolling.current = false; // 애니메이션 끝난 후 잠금 해제
-      }, 1000); // 애니메이션 시간 (scrollIntoView와 동일하게 설정)
+      }, 1500); // 애니메이션 시간 (scrollIntoView와 동일하게 설정)
     }
   };
 
@@ -65,13 +68,16 @@ const MainPage = () => {
 
       setTimeout(() => {
         isScrolling.current = false; // 애니메이션 끝난 후 잠금 해제
-      }, 1000); // 애니메이션 시간
+      }, 1500); // 애니메이션 시간
     }
   };
 
   return (
     <>
+      <Header onScrollTo={handleScrollTo} />
       <NavBar activeSection={activeSection} onScrollTo={handleScrollTo} />
+      <QuickMenuBar />
+      <TopButton />
       <Wrapper>
         {sections.map((id, index) => (
           <Section
@@ -81,7 +87,7 @@ const MainPage = () => {
             }}
             key={id}
           >
-            {getSectionContent(id)}
+            {getSectionContent(id, activeSection === id)}
           </Section>
         ))}
       </Wrapper>
@@ -89,18 +95,18 @@ const MainPage = () => {
   );
 };
 
-const getSectionContent = (id: string) => {
+const getSectionContent = (id: string, isActive: boolean) => {
   switch (id) {
     case "main":
-      return <MainSection />;
+      return <MainSection isActive={isActive} />;
     case "resume":
-      return <ResumeSection />;
+      return <ResumeSection isActive={isActive} />;
     case "skills":
-      return <SkillsSection />;
+      return <SkillsSection isActive={isActive} />;
     case "projects":
-      return <ProjectsSection />;
+      return <ProjectsSection isActive={isActive} />;
     case "contact":
-      return <ContactSection />;
+      return <ContactSection isActive={isActive} />;
     default:
       return null;
   }
@@ -115,8 +121,7 @@ const Wrapper = styled.div`
 
 const Section = styled.div`
   display: flex;
-  height: 100vh; /* 각 섹션을 한 화면에 맞춤 */
+  height: 150vh;
   scroll-snap-align: start; /* 스크롤 시작점 고정 */
-  align-items: center;
   justify-content: center;
 `;

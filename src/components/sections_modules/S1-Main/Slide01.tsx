@@ -142,7 +142,7 @@ const Title = styled.div`
     width: 80%;
     aspect-ratio: 521/185;
 
-    background-image: url("images/kimhanbeen.png");
+    background-image: url("images/I03_BeenirudaCharacterSet/kimhanbeen.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -173,7 +173,7 @@ const Vinyl = styled.div`
   width: 100%;
   height: 100%;
 
-  background-image: url("images/vinyl.png");
+  background-image: url("images/I11_Etc/vinyl.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

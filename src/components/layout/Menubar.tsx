@@ -10,7 +10,7 @@ interface MenuBarProps {
 const NavBar = ({ activeSection, onScrollTo }: MenuBarProps) => {
   const sections = ["main", "resume", "skills", "projects", "contact"];
   return (
-    <nav style={{ position: "fixed", top: 0, width: "100%", zIndex: 10 }}>
+    <nav style={{ position: "fixed", top: 0, width: "100%", zIndex: 1009 }}>
       <ul style={{ display: "flex", listStyle: "none", gap: "10px" }}>
         {sections.map((section) => (
           <li

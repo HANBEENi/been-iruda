@@ -36,7 +36,9 @@ const QuickMenuBar = () => {
         </Title>
         <Icon>
           <div
-            style={{ backgroundImage: "url(images/quickMenubar/darkmode.png)" }}
+            style={{
+              backgroundImage: "url(images/I04_QuickMenubar/M01_darkmode.png)",
+            }}
           />
         </Icon>
       </QuickMenu>
@@ -46,7 +48,9 @@ const QuickMenuBar = () => {
         </Title>
         <Icon>
           <div
-            style={{ backgroundImage: "url(images/quickMenubar/gachya.png)" }}
+            style={{
+              backgroundImage: "url(images/I04_QuickMenubar/M02_gachya.png)",
+            }}
           />
         </Icon>
         {/* 네잎클로버 애니메이션 렌더링 */}
@@ -56,7 +60,7 @@ const QuickMenuBar = () => {
             style={{
               left: "50%", // 버튼의 중앙
               top: "-20px", // 버튼 바로 위
-              backgroundImage: "url(images/quickMenubar/gachya.png)",
+              backgroundImage: "url(images/I04_QuickMenubar/M02_gachya.png)",
             }}
           />
         ))}
@@ -67,17 +71,33 @@ const QuickMenuBar = () => {
         </Title>
         <Icon>
           <div
-            style={{ backgroundImage: "url(images/quickMenubar/resume.png)" }}
+            style={{
+              backgroundImage: "url(images/I04_QuickMenubar/M03_resume.png)",
+            }}
+          />
+        </Icon>
+      </QuickMenu>
+      <QuickMenu>
+        <Title className="title">
+          <span style={{ color: "#848484" }}>바로가기 모음</span>
+        </Title>
+        <Icon>
+          <div
+            style={{
+              backgroundImage: "url(images/I04_QuickMenubar/M04_linkset.png)",
+            }}
           />
         </Icon>
       </QuickMenu>
       <QuickMenu onClick={handleHeartAnimation}>
         <Title className="title">
-          <div style={{ color: "#FF4EA1" }}>응원해요!</div>
+          <span style={{ color: "#FF4EA1" }}>응원해요!</span>
         </Title>
         <Icon>
           <div
-            style={{ backgroundImage: "url(images/quickMenubar/heart.png)" }}
+            style={{
+              backgroundImage: "url(images/I04_QuickMenubar/M05_heart.png)",
+            }}
           />
         </Icon>
         {/* 하트 애니메이션 렌더링 */}
@@ -87,7 +107,7 @@ const QuickMenuBar = () => {
             style={{
               left: "50%", // 버튼의 중앙
               top: "-20px", // 버튼 바로 위
-              backgroundImage: "url(images/quickMenubar/heart.png)",
+              backgroundImage: "url(images/I04_QuickMenubar/M05_heart.png)",
             }}
           />
         ))}
@@ -103,20 +123,20 @@ const Layout = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: end;
-  padding: 12px 13px;
-  position: absolute;
+  padding: 12px 12px;
+  position: fixed;
   right: 70px;
   top: 50%;
-  transform: translate(0%, -50%);
-  gap: 30px;
+  transform: translate(20%, -50%);
+  gap: 20px;
   z-index: 1004;
 
-  width: 100px;
+  width: 70px;
   height: fit-content;
 
   border-radius: 100px;
 
-  background: #efefef;
+  background: #efefef8f;
 `;
 
 const QuickMenu = styled.div`
@@ -126,10 +146,9 @@ const QuickMenu = styled.div`
   justify-content: center;
   white-space: nowrap;
 
-  width: 74px;
-  height: 74px;
+  width: 100%;
+  aspect-ratio: 1/1;
 
-  background: #fff;
   border-radius: 100px;
 
   &:hover {
@@ -148,15 +167,14 @@ const Title = styled.div`
   right: 0;
   align-items: center;
   justify-content: center;
-  padding-left: 34px;
-  padding-right: 88px;
+  padding-left: 30px;
+  padding-right: 50px;
   overflow: hidden;
   opacity: 0;
 
   height: 100%;
   width: 0;
 
-  background: #fff;
   border-radius: 100px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 
@@ -170,6 +188,7 @@ const Title = styled.div`
   }
 
   ${QuickMenu}:hover & {
+    background: #fff;
     opacity: 1; /* hover 시 타이틀 나타남 */
     transform: translateX(-10px); /* 자연스럽게 제자리로 이동 */
     width: fit-content;
@@ -187,16 +206,16 @@ const Icon = styled.div`
   align-items: center;
   justify-content: center;
 
-  width: 74px;
-  height: 74px;
+  width: 100%;
+  aspect-ratio: 1/1;
 
   background: #fff;
   border-radius: 100px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 
   & > div {
-    width: 45px;
-    height: 45px;
+    width: 70%;
+    aspect-ratio: 1/1;
 
     background-repeat: no-repeat;
     background-position: center;
