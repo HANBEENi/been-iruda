@@ -75,7 +75,6 @@ const MainPage = () => {
   return (
     <>
       <Header onScrollTo={handleScrollTo} />
-      <NavBar activeSection={activeSection} onScrollTo={handleScrollTo} />
       <QuickMenuBar />
       <TopButton />
       <Wrapper>
