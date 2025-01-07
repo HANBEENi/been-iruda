@@ -45,7 +45,7 @@ const ContactSection = ({ isActive }: { isActive: boolean }) => {
         // from(초기 상태)
         {
           WebkitTextFillColor: "transparent",
-          WebkitTextStrokeColor: "#525252",
+          WebkitTextStrokeColor: "#cbcbcb",
         },
         // to(최종 상태)
         {
@@ -62,7 +62,7 @@ const ContactSection = ({ isActive }: { isActive: boolean }) => {
           },
           onComplete: function () {
             gsap.to(text, {
-              WebkitTextStrokeColor: "#4f4f4f", // 테두리 색상을 원래 색상으로 설정
+              WebkitTextStrokeColor: "#b2b2b2", // 테두리 색상을 원래 색상으로 설정
               WebkitTextFillColor: "transparent",
               clipPath: "inset(0 0 0 0)", // 텍스트를 다시 왼쪽에서 오른쪽으로 채우기
               duration: 2,
@@ -102,8 +102,8 @@ const ContactSection = ({ isActive }: { isActive: boolean }) => {
   }, []);
 
   return (
-    <motion.div
-      style={{ background: "#6f5ad7", height: "100%", width: "100%" }}
+    <Layout
+      style={{ height: "100%", width: "100%" }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -113,17 +113,17 @@ const ContactSection = ({ isActive }: { isActive: boolean }) => {
           <div className="card3D">
             <Dark_Card3D_SizeFeat isAction={isAction} />
           </div>
-          <BackText>
+          {/* <BackText>
             <div ref={addTextRefs} className="backText">
               CONTACT
             </div>
             <div ref={addTextRefs} className="backText">
               INFO
             </div>
-          </BackText>
+          </BackText> */}
           {/* <CompactFooter /> */}
         </Contents>
-        <HowContect>
+        {/* <HowContect>
           <div
             onClick={handleOpenEmailForm}
             style={{
@@ -166,13 +166,20 @@ const ContactSection = ({ isActive }: { isActive: boolean }) => {
           >
             OpenKakao
           </div>
-        </HowContect>
+        </HowContect> */}
       </Container>
-    </motion.div>
+    </Layout>
   );
 };
 
 export default ContactSection;
+const Layout = styled(motion.div)`
+  background: linear-gradient(45deg, #fff 0%, #e2e2e2 100%);
+  background-image: url("images/I11_Etc/backgroundVinyl2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -180,8 +187,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  /* max-width: 1200px; */
-  /* height: calc(100vh + 100px); */
   height: 100vh;
   overflow-x: hidden;
 
@@ -210,78 +215,6 @@ const BackText = styled.div`
 
   pointer-events: none;
   user-select: none;
-`;
-
-const Title = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 0px;
-  gap: 10px;
-  max-width: 1200px;
-  width: 100%;
-
-  font-size: 2.1875rem;
-  font-weight: 700;
-`;
-
-const Wrap = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  font-family: "InterBold";
-
-  & .about {
-    /* background: url("/images/smoke_4.png"); */
-    background: #fff;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: cover;
-
-    font-size: 3rem;
-    font-weight: 900;
-  }
-  & .line {
-    width: 60%;
-    position: relative;
-  }
-  & .line::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(
-      to right,
-      #acacac5e 50%,
-      rgba(255, 255, 255, 0) 0%
-    );
-    background-size: 10px 10px;
-  }
-  & .subTitleEn {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: #fff;
-    font-size: 2.25rem;
-  }
-  & .subTitleKo {
-    font-size: 1.4375rem;
-    font-family: "Inter";
-    font-weight: 400;
-  }
-  & .dotWrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  & .dot {
-    width: 15px;
-    aspect-ratio: 1/1;
-    border-radius: 100%;
-  }
 `;
 
 const Contents = styled.div`

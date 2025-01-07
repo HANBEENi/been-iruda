@@ -9,18 +9,21 @@ import {
 } from "../../../public/svg/EtcSVG";
 import { useState } from "react";
 
-const aboutBeeniruda = () => {
+const aboutBeeniruda = ({ setIsSlide01, isSlide01 }: any) => {
   return (
-    <>
+    <AboutLayout>
+      <Arrow onClick={() => setIsSlide01(!isSlide01)}>
+        <ArrowSVG />
+        <div>ABOUT ME</div>
+      </Arrow>
       <ImageSet>
         <img src="/images/I11_Etc/beenirudaTextSet.png" alt="BEEN.IRUDA" />
-        <BeenirudaTextSVG />
-        {/* <span>BEEN.IRUDA</span> */}
+        <div className="beenirudaTextSVG">
+          <BeenirudaTextSVG />
+        </div>
       </ImageSet>
       <SubTitle>
-        <span>What does</span>
-        <span>BEEN.IRUDA</span>
-        <span>mean?</span>
+        <span>BEEN.IRUDA가 무엇인가요?</span>
       </SubTitle>
       <Description>
         제 이름 한빈(BEEN)과 별칭인 '김비니루'를 결합하여 만든 이름입니다.
@@ -30,31 +33,26 @@ const aboutBeeniruda = () => {
         <br />
         비니루라고 하면 비닐이 되고 이를 빈, 이루다와 연관하였습니다.
       </Description>
-    </>
+    </AboutLayout>
   );
 };
-const aboutKimhanbeen = () => {
+const aboutKimhanbeen = ({ setIsSlide01, isSlide01 }: any) => {
   return (
     <>
       <ImageSet>
         <img
           className="kimhanbeenImg"
-          src="/images/I11_Etc/beenirudaCharacter.png"
+          src="/images/I03_BeenirudaCharacterSet/aboutMe01.png"
           alt="KimHanbeen.Character"
         />
         <div className="kimhanbeenTextSVG">
           <KimHanbeenTextSVG />
         </div>
-        {/* <span>KIM HANBEEN</span> */}
       </ImageSet>
       <SubTitle>
-        <span>I'm</span>
-        <span>FrontEnd Developer</span>
-        <span>KimHanbeen</span>
+        <span>안녕하세요, 웹 프론트엔드 개발자 김한빈입니다.</span>
       </SubTitle>
       <Description>
-        안녕하세요. 웹 프론트엔드 개발자 김한빈입니다.
-        <br />
         사용자와 서비스 사이를 잇는 직관적이고 아름다운 웹 인터페이스를 만드는
         것을 좋아합니다.
         <br />
@@ -64,6 +62,21 @@ const aboutKimhanbeen = () => {
         지속적인 학습과 협업을 통해 성장하며, 사용자 중심 개발에 열정을 가지고
         있습니다.
       </Description>
+      <Tag>
+        <div onClick={() => setIsSlide01(!isSlide01)}>
+          <span>WHAT IS "</span>
+          <span style={{ color: "#FF6197 " }}>BEEN.IRUDA</span>
+          <span>"? 😁 →</span>
+        </div>
+        <div>
+          <span>MORE ABOUT</span>
+          <span style={{ color: "#FF6197 " }}>&nbsp;ME 😁 </span>
+          <span>&nbsp; →</span>
+        </div>
+        <div className="text">
+          <span>#개발독서 #취미 #장단점 #서향 #경험</span>
+        </div>
+      </Tag>
     </>
   );
 };
@@ -78,12 +91,10 @@ const ResumeSection = ({ isActive }: { isActive: boolean }) => {
       transition={{ duration: 1 }}
     >
       <Contents>
-        <Arrow onClick={() => setIsSlide01(!isSlide01)}>
-          <ArrowSVG />
-        </Arrow>
-        <div className="title">OVERVIEW</div>
         <div className="contents">
-          {isSlide01 ? aboutBeeniruda() : aboutKimhanbeen()}
+          {isSlide01
+            ? aboutKimhanbeen({ setIsSlide01, isSlide01 })
+            : aboutBeeniruda({ setIsSlide01, isSlide01 })}
         </div>
       </Contents>
     </Layout>
@@ -106,13 +117,34 @@ const Layout = styled(motion.div)`
   background-size: cover;
 `;
 
-const Arrow = styled.div`
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translate(-50%, -50%);
+const AboutLayout = styled.div`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 
-  cursor: pointer;
+  height: calc(100vh - 240px);
+  width: 100%;
+`;
+
+const Arrow = styled.div`
+  display: flex;
+  position: absolute;
+  align-items: center;
+  gap: 13px;
+  padding-left: 50px;
+
+  width: 100%;
+  top: 0;
+  svg {
+    width: 40px;
+    cursor: pointer;
+  }
+  div {
+    cursor: pointer;
+  }
 `;
 
 const Contents = styled.div`
@@ -127,10 +159,6 @@ const Contents = styled.div`
   height: 100vh;
 
   font-family: "GmarketSans";
-
-  .title {
-    font-size: 24px;
-  }
   .contents {
     display: flex;
     flex-direction: column;
@@ -145,6 +173,8 @@ const ImageSet = styled.div`
   align-items: center;
   position: relative;
 
+  width: fit-content;
+
   img {
     width: 270px;
   }
@@ -152,21 +182,32 @@ const ImageSet = styled.div`
     width: 200px;
   }
   .kimhanbeenTextSVG {
+    width: 80px;
+    height: 20px;
     position: absolute;
-    bottom: 15%;
-    right: -50%;
-    transform: translate(30%, 0%);
+    bottom: 0%;
+    right: -30%;
+    transform: translate(20%, 0);
 
     width: 260px;
-  }
-  & svg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(20%, -50%);
+    & svg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(20%, -50%);
 
-    width: 260px;
+      width: 200px;
+    }
   }
+  .beenirudaTextSVG {
+    position: absolute;
+    bottom: -10%;
+    right: -45%;
+    & svg {
+      width: 200px;
+    }
+  }
+
   span {
     font-size: 16px;
   }
@@ -174,19 +215,50 @@ const ImageSet = styled.div`
 
 const SubTitle = styled.div`
   display: flex;
+  justify-content: center;
   gap: 5px;
+  white-space: nowrap;
 
-  font-family: "Knewave";
+  width: 100%;
+
+  font-family: "Sejong";
   font-size: 28px;
   letter-spacing: 1.5px;
-
-  :nth-child(2) {
-    color: #ff6297;
-  }
 `;
 
 const Description = styled.div`
+  white-space: nowrap;
   font-size: 20px;
   line-height: 30px;
   text-align: center;
+  font-family: "Sejong";
+`;
+
+const Tag = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  white-space: nowrap;
+
+  width: 100%;
+
+  font-weight: bold;
+  font-size: 16px;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 20px;
+
+    border: 2px solid #000;
+    border-radius: 30px;
+
+    cursor: pointer;
+  }
+  .text {
+    border: none;
+    padding: 10px 0;
+    padding-top: 15px;
+  }
 `;

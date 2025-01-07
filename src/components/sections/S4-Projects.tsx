@@ -104,6 +104,10 @@ const Layout = styled(motion.div)`
   height: 100%;
 
   background: linear-gradient(45deg, #fff 0%, #e2e2e2 100%);
+  background-image: url("images/I11_Etc/backgroundVinyl2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const Contents = styled.div`
