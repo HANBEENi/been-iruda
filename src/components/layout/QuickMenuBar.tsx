@@ -1,5 +1,6 @@
 "use client";
 
+import { media } from "@/styles/mediaQuery";
 import { useRef, useState } from "react";
 import { keyframes, styled } from "styled-components";
 
@@ -137,6 +138,13 @@ const Layout = styled.div`
   border-radius: 100px;
 
   background: #efefef8f;
+
+  ${media.tablet} {
+    right: 40px;
+  }
+  ${media.mobile} {
+    right: 20px;
+  }
 `;
 
 const QuickMenu = styled.div`

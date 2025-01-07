@@ -1,7 +1,14 @@
 "use client";
 
+/**
+ * Header & Menubar
+ *
+ * 로고와 버거메뉴아이콘, 메뉴바를 포함하고 있습니다.
+ */
+
 import { css, keyframes, styled } from "styled-components";
 import { useState } from "react";
+import { media } from "@/styles/mediaQuery";
 
 interface Props {
   onScrollTo: (section: string) => void;
@@ -17,12 +24,13 @@ const Header = ({ onScrollTo }: Props) => {
       <Layout>
         <Contents>
           <Icon
+            className="logo"
             style={{ backgroundImage: "url(/images/I01_Header/logo3.png)" }}
             onClick={() => onScrollTo("main")}
-            className="logo"
           />
           <Menu>
             <Icon
+              className="burger"
               style={{
                 backgroundImage: "url(/images/I01_Header/menuBurger.png)",
               }}
@@ -88,8 +96,6 @@ const Layout = styled.div`
 
   width: 100%;
   height: 100px;
-
-  /* background: #ffffff12; */
 `;
 
 const Contents = styled.div`
@@ -101,9 +107,17 @@ const Contents = styled.div`
   width: 100%;
   height: 100%;
 
+  ${media.tablet} {
+    padding: 0 40px;
+  }
+
+  ${media.mobile} {
+    padding: 0 20px;
+  }
+
   .logo {
-    width: 360px;
-    height: 40px;
+    display: flex;
+    width: 320px;
   }
 `;
 

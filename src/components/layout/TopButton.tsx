@@ -2,6 +2,7 @@
 
 import { styled } from "styled-components";
 import { TopButtonSVG } from "../../../public/svg/ButtonSVG";
+import { media } from "@/styles/mediaQuery";
 
 const TopButton = () => {
   return (
@@ -31,4 +32,11 @@ const Layout = styled.div`
   background: #f2f2f2b9;
 
   cursor: pointer;
+
+  ${media.tablet} {
+    right: 40px;
+  }
+  ${media.mobile} {
+    right: 20px;
+  }
 `;
