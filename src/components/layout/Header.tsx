@@ -17,8 +17,9 @@ const Header = ({ onScrollTo }: Props) => {
       <Layout>
         <Contents>
           <Icon
-            style={{ backgroundImage: "url(/images/I01_Header/logo2.png)" }}
+            style={{ backgroundImage: "url(/images/I01_Header/logo3.png)" }}
             onClick={() => onScrollTo("main")}
+            className="logo"
           />
           <Menu>
             <Icon
@@ -99,6 +100,11 @@ const Contents = styled.div`
 
   width: 100%;
   height: 100%;
+
+  .logo {
+    width: 360px;
+    height: 40px;
+  }
 `;
 
 const Icon = styled.div`
