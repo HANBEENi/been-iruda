@@ -16,7 +16,7 @@ interface Props {
 
 const Header = ({ onScrollTo }: Props) => {
   const sections = ["main", "resume", "skills", "projects", "contact"];
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(true);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -118,6 +118,13 @@ const Contents = styled.div`
   .logo {
     display: flex;
     width: 320px;
+
+    ${media.tablet} {
+      width: 250px;
+    }
+    ${media.mobile} {
+      width: 250px;
+    }
   }
 `;
 
@@ -134,6 +141,15 @@ const Icon = styled.div`
   background-position: center;
 
   cursor: pointer;
+
+  ${media.mobile} {
+    width: 30px;
+    height: 30px;
+  }
+  ${media.tablet} {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const Menu = styled.div``;
@@ -165,6 +181,10 @@ const MenuBar = styled.div<{ isOpen: boolean }>`
   ul {
     list-style: none;
     margin: 0;
+  }
+
+  ${media.mobile} {
+    width: 80%;
   }
 `;
 const MenuItem = styled.li<{ index: number; isOpen: boolean }>`

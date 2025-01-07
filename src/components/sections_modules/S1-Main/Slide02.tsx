@@ -1,5 +1,6 @@
 "use client";
 
+import { media } from "@/styles/mediaQuery";
 import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { useFrame, Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
@@ -42,12 +43,15 @@ const MainSlide02 = () => {
   const model3DRef = useRef<HTMLDivElement | null>(null);
   const [scale, setScale] = useState<number>(1); // 3D 모델의 스케일
 
+  const MinScale = 1.8;
+
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
       if (entries.length > 0) {
         const entry = entries[0];
         const containerWidth = entry.contentRect.width; // Model3D의 너비 측정
-        const newScale = containerWidth / 600; // 기준 너비(600px) 대비 스케일 계산
+        const calculatedScale = containerWidth / 600; // 기준 너비(600px) 대비 스케일 계산
+        const newScale = Math.max(calculatedScale, MinScale);
         setScale(newScale);
       }
     });
@@ -107,7 +111,6 @@ const Contents = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
   gap: 60px;
   z-index: 1;
   white-space: nowrap;
@@ -115,6 +118,15 @@ const Contents = styled.div`
   width: 100%;
   max-width: 1190px;
   height: calc(100% - 80px);
+
+  ${media.tablet} {
+    padding: 40px 0;
+    gap: 0px;
+  }
+
+  ${media.mobile} {
+    gap: 0px;
+  }
 
   & .beeniru {
     position: relative;
@@ -128,6 +140,10 @@ const Contents = styled.div`
     background-size: contain;
     background-position: center;
 
+    ${media.mobile} {
+      max-height: 201.7px;
+    }
+
     & .title {
       position: absolute;
       bottom: 0;
@@ -139,6 +155,11 @@ const Contents = styled.div`
       & :first-child {
         color: #ffa6c4;
       }
+
+      ${media.mobile} {
+        font-size: clamp(13px, 3vw, 35px);
+        bottom: 15%;
+      }
     }
   }
   & .subTitle {
@@ -149,6 +170,14 @@ const Contents = styled.div`
     gap: 20px;
 
     width: 100%;
+
+    ${media.tablet} {
+      gap: 5px;
+    }
+
+    ${media.mobile} {
+      gap: 5px;
+    }
   }
 `;
 
@@ -158,4 +187,10 @@ const Model3D = styled.div`
   width: 100%;
   max-width: 1190px;
   aspect-ratio: 1275/256;
+
+  ${media.mobile} {
+    aspect-ratio: unset;
+    height: 20%;
+    margin-left: 30px;
+  }
 `;

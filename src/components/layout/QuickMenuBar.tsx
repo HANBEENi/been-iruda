@@ -124,7 +124,7 @@ const Layout = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: end;
-  padding: 12px 12px;
+  padding: 12px;
   position: fixed;
   right: 70px;
   top: 50%;
@@ -141,9 +141,15 @@ const Layout = styled.div`
 
   ${media.tablet} {
     right: 40px;
+    width: 55px;
+    gap: 15px;
   }
   ${media.mobile} {
-    right: 20px;
+    display: none;
+
+    /* right: 20px;
+    width: 55px;
+    gap: 15px; */
   }
 `;
 

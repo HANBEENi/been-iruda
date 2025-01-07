@@ -1,5 +1,6 @@
 "use client";
 
+import { media } from "@/styles/mediaQuery";
 import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { useFrame, Canvas, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useRef } from "react";
@@ -56,7 +57,7 @@ const DynamicFovCamera = () => {
   const { camera, size } = useThree();
 
   useEffect(() => {
-    const baseFov = 1.7; // 기본 fov
+    const baseFov = 2.2; // 기본 fov
     const scaleFactor = Math.min(size.width / size.height, 1.5); // 화면 비율에 따라 fov 조정
     (camera as THREE.PerspectiveCamera).fov = baseFov / scaleFactor; // 카메라 fov 조정
     camera.updateProjectionMatrix(); // 변경 사항 적용
@@ -119,6 +120,10 @@ const Contents = styled.div`
 
   max-width: 780px;
   height: calc(100% - 80px);
+
+  ${media.tablet} {
+    padding: 40px 0;
+  }
 `;
 
 const Title = styled.div`
@@ -133,6 +138,10 @@ const Title = styled.div`
   font-weight: bold;
   white-space: nowrap;
 
+  ${media.mobile} {
+    font-size: 25px;
+  }
+
   & .kimhanbeen {
     display: flex;
     position: absolute;
@@ -146,17 +155,33 @@ const Title = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+
+    ${media.tablet} {
+      top: -5%;
+      left: 62%;
+      width: 40%;
+    }
+    ${media.mobile} {
+      top: -10%;
+      left: 75%;
+      width: 50%;
+    }
   }
 `;
 const SubTitle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
+  white-space: nowrap;
 
   width: 100%;
 
   color: #ffa6c4;
   font-size: 22px;
+
+  ${media.mobile} {
+    font-size: 16px;
+  }
 `;
 const Model = styled.div`
   display: flex;
@@ -164,6 +189,12 @@ const Model = styled.div`
 
   width: 100%;
   height: 65%;
+
+  ${media.mobile} {
+    height: 45%;
+  }
+  ${media.tablet} {
+  }
 `;
 const Vinyl = styled.div`
   display: flex;

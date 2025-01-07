@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import MainSlide01 from "../sections_modules/S1-Main/Slide01";
 import MainSlide02 from "../sections_modules/S1-Main/Slide02";
+import { media } from "@/styles/mediaQuery";
 
 // 배경 이미지 배열
 const backgroundImages = [
@@ -106,6 +107,12 @@ const Layout = styled(motion.div)`
 
   width: 100vw;
   height: 100%;
+
+  ${media.tablet} {
+  }
+  ${media.mobile} {
+    padding: 0 10px;
+  }
 `;
 const BackgroundLayer = styled.div<{ $image: string; $fadeOut: boolean }>`
   position: absolute;

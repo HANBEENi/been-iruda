@@ -6,12 +6,11 @@ import {
   DevOpsSkills,
   FrontendSkills,
   Skill,
-} from "@/lib/TechSkillData";
+} from "@/lib/data/TechSkillData";
 import { motion } from "framer-motion";
-import { div } from "framer-motion/client";
-import { useEffect, useRef, useState } from "react";
-import { keyframes, styled } from "styled-components";
-import { debounce } from "lodash";
+import { useRef, useState } from "react";
+import { styled } from "styled-components";
+import { media } from "@/styles/mediaQuery";
 
 type SkillCategory = "Frontend" | "Backend" | "DevOps" | "Design & Docs";
 
@@ -65,7 +64,9 @@ const SkillsSection = ({ isActive }: { isActive: boolean }) => {
               className={activeTab === tag ? "active" : ""}
             >
               {tag}
-              <div className="tagLength">10</div>
+              <div className="tagLength">
+                {skillData[tag as SkillCategory].length}
+              </div>
             </div>
           ))}
         </SkillTag>
@@ -112,6 +113,7 @@ export default SkillsSection;
 const Layout = styled(motion.div)`
   display: flex;
   justify-content: center;
+  padding: 0 70px;
 
   width: 100%;
   height: 100%;
@@ -120,6 +122,10 @@ const Layout = styled(motion.div)`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  ${media.mobile} {
+    padding: 0 20px;
+  }
 `;
 
 const Container = styled.div`
@@ -134,6 +140,13 @@ const Container = styled.div`
   height: 100vh;
 
   text-align: center;
+
+  ${media.tablet} {
+    padding-bottom: 10px;
+  }
+  ${media.mobile} {
+    padding-bottom: 10px;
+  }
 `;
 const Title = styled.div`
   display: flex;
@@ -145,11 +158,10 @@ const Title = styled.div`
 
 const SkillTag = styled.div`
   display: flex;
+  white-space: nowrap;
 
   background: #fff;
   border-radius: 5px;
-
-  font-size: 15px;
 
   div {
     padding: 10px 20px;
@@ -157,12 +169,21 @@ const SkillTag = styled.div`
 
     border-radius: 5px;
 
+    font-size: 15px;
     &:hover {
       background: #d9d9d9;
     }
     &.active {
       background: #000;
       color: #fff;
+
+      .tagLength {
+        background: #ff6197;
+      }
+    }
+    ${media.mobile} {
+      padding: 10px;
+      font-size: 13px;
     }
 
     cursor: pointer;
@@ -171,19 +192,29 @@ const SkillTag = styled.div`
     position: absolute;
     top: -10px;
     right: 10px;
-    padding: 2px;
+    padding: 3px 5px;
+    width: 20px;
 
     border-radius: 20px;
     background: #e0e0e0;
 
     color: #fff;
     font-size: 13px;
+
+    ${media.mobile} {
+      font-size: 12px;
+      right: 5px;
+    }
   }
 `;
 
 const PreviewSkills = styled.div`
-  display: flex;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+  gap: 10px 30px;
+  justify-content: center;
+  width: 100%;
+
   svg {
     width: 30px;
     height: 30px;
@@ -215,13 +246,20 @@ const PreviewSkills = styled.div`
 
 const SkillList = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(375px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   overflow-y: scroll;
-  overflow-x: hidden;
+  justify-items: center;
 
   width: 100%;
   height: 350px;
+
+  ${media.tablet} {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  ${media.mobile} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
   /* 스크롤바 항상 표시 */
   scrollbar-width: thin; /* Firefox */
@@ -253,6 +291,10 @@ const SkillList = styled.div`
     background: #ffffff;
 
     text-align: start;
+
+    ${media.mobile} {
+      min-width: 200px;
+    }
 
     .title {
       display: flex;

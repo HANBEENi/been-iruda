@@ -35,8 +35,15 @@ const Layout = styled.div`
 
   ${media.tablet} {
     right: 40px;
+    bottom: 40px;
+    width: 50px;
+    height: 50px;
   }
   ${media.mobile} {
-    right: 20px;
+    display: none;
+    /* right: 20px;
+    bottom: 40px;
+    width: 50px;
+    height: 50px; */
   }
 `;
