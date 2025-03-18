@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   BackendSkills,
@@ -6,23 +6,23 @@ import {
   DevOpsSkills,
   FrontendSkills,
   Skill,
-} from "@/lib/data/TechSkillData";
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
-import { styled } from "styled-components";
-import { media } from "@/styles/mediaQuery";
+} from '@/lib/data/TechSkillData';
+import { motion } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { styled } from 'styled-components';
+import { media } from '@/styles/mediaQuery';
 
-type SkillCategory = "Frontend" | "Backend" | "DevOps" | "Design & Docs";
+type SkillCategory = 'Frontend' | 'Backend' | 'DevOps' | 'Design & Docs';
 
 const SkillsSection = ({ isActive }: { isActive: boolean }) => {
   const [isAction, setIsAction] = useState<boolean>(false);
-  const [activeTab, setActiveTab] = useState<SkillCategory>("Frontend");
+  const [activeTab, setActiveTab] = useState<SkillCategory>('Frontend');
 
   const skillData: Record<SkillCategory, Skill[]> = {
     Frontend: FrontendSkills,
     Backend: BackendSkills,
     DevOps: DevOpsSkills,
-    "Design & Docs": DesignDocsSkills,
+    'Design & Docs': DesignDocsSkills,
   };
 
   // SkillList 컨테이너와 각 스킬 항목의 ref
@@ -39,12 +39,12 @@ const SkillsSection = ({ isActive }: { isActive: boolean }) => {
       const offsetTop = target.offsetTop - skillList.offsetTop;
 
       // 스크롤 이동
-      skillList.scrollTo({ top: offsetTop, behavior: "smooth" });
+      skillList.scrollTo({ top: offsetTop, behavior: 'smooth' });
 
       // 디버깅: 계산된 값 확인
-      console.log("target.offsetTop:", target.offsetTop);
-      console.log("skillList.offsetTop:", skillList.offsetTop);
-      console.log("Calculated offsetTop:", offsetTop);
+      console.log('target.offsetTop:', target.offsetTop);
+      console.log('skillList.offsetTop:', skillList.offsetTop);
+      console.log('Calculated offsetTop:', offsetTop);
     }
   };
 
@@ -61,7 +61,7 @@ const SkillsSection = ({ isActive }: { isActive: boolean }) => {
             <div
               key={tag}
               onClick={() => setActiveTab(tag as SkillCategory)}
-              className={activeTab === tag ? "active" : ""}
+              className={activeTab === tag ? 'active' : ''}
             >
               {tag}
               <div className="tagLength">
@@ -118,7 +118,7 @@ const Layout = styled(motion.div)`
   width: 100%;
   height: 100%;
 
-  background-image: url("images/I11_Etc/backgroundVinyl2.png");
+  background-image: url('images/I11_Etc/backgroundVinyl2.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -209,11 +209,10 @@ const SkillTag = styled.div`
 `;
 
 const PreviewSkills = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
-  gap: 10px 30px;
+  display: flex;
   justify-content: center;
   width: 100%;
+  gap: 20px;
 
   svg {
     width: 30px;
@@ -285,7 +284,7 @@ const SkillList = styled.div`
     padding: 25px 20px;
 
     width: 100%;
-    height: 200px;
+    height: 150px;
 
     border-radius: 10px;
     background: #ffffff;

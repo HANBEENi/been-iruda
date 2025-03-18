@@ -195,6 +195,8 @@ const HowContact = () => {
 
 const Card = ({ isAction }: any) => {
   const cardRef = useRef<THREE.Group>(null);
+  const paperTextureUrl = "images/I11_Etc/paper-texture.jpg";
+  const paperTexture = useLoader(THREE.TextureLoader, paperTextureUrl);
 
   const [rotationActive, setRotationActive] = useState<boolean>(true);
   const [time, setTime] = useState<number>(0);
@@ -258,7 +260,7 @@ const Card = ({ isAction }: any) => {
         smoothness={4}
         position={[0, 0, 0]}
       >
-        <MeshReflectorMaterial
+        {/* <MeshReflectorMaterial
           color="#fff"
           roughness={0.2}
           metalness={0.5}
@@ -272,7 +274,8 @@ const Card = ({ isAction }: any) => {
           depthToBlurRatioBias={0.25}
           reflectorOffset={0.02}
           mirror={0.8}
-        />
+        /> */}
+        <MeshReflectorMaterial map={paperTexture} mirror={0.01} />
       </RoundedBox>
       <Text
         position={[-5.5, 2.3, 0.3]}

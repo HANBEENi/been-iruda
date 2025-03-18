@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { media } from "@/styles/mediaQuery";
-import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
-import { useFrame, Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
-import * as THREE from "three";
+import { media } from '@/styles/mediaQuery';
+import { OrbitControls, PerspectiveCamera, useGLTF } from '@react-three/drei';
+import { useFrame, Canvas } from '@react-three/fiber';
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { styled } from 'styled-components';
+import * as THREE from 'three';
 
 const AnimatedModel = ({ scale }: { scale: number }) => {
-  const gltf = useGLTF("models/Text3D_portfolio/portfolio3D.gltf");
+  const gltf = useGLTF('models/Text3D_portfolio/portfolio3D.gltf');
   const mixer = useRef<THREE.AnimationMixer | null>(null);
 
   // 애니메이션 로직
@@ -20,7 +20,7 @@ const AnimatedModel = ({ scale }: { scale: number }) => {
         const action = mixer.current?.clipAction(clip);
         if (action) {
           action.play();
-          action.timeScale = 0.03; // 애니메이션 속도를 0.03배로 줄임 (기본값은 1)
+          action.timeScale = 0.02; // 애니메이션 속도를 0.03배로 줄임 (기본값은 1)
           action.setLoop(THREE.LoopPingPong, Infinity); // 되감기 루프 설정
         }
       });
@@ -77,7 +77,7 @@ const MainSlide02 = () => {
       </div>
       <Model3D ref={model3DRef}>
         <Canvas
-          style={{ height: "100%", width: "100%" }}
+          style={{ height: '80%', width: '100%' }}
           camera={{ position: [0, 0, 0], fov: 1.5 }}
         >
           <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={1.5} />
@@ -95,11 +95,11 @@ const MainSlide02 = () => {
             <AnimatedModel scale={scale * 0.85} />
           </Suspense>
         </Canvas>
+        <div className="subTitle">
+          <div>BEEN.IRUDA: 비니루다 | 빈, 이루다</div>
+          <div>© 2024. KIM HANBEEN All Rights Reserved</div>
+        </div>
       </Model3D>
-      <div className="subTitle">
-        <div>BEEN.IRUDA: 비니루다 | 빈, 이루다</div>
-        <div>© 2024. KIM HANBEEN All Rights Reserved</div>
-      </div>
     </Contents>
   );
 };
@@ -111,13 +111,12 @@ const Contents = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 60px;
   z-index: 1;
   white-space: nowrap;
 
   width: 100%;
   max-width: 1190px;
-  height: calc(100% - 80px);
+  height: calc(100% - 100px);
 
   ${media.tablet} {
     padding: 40px 0;
@@ -135,7 +134,7 @@ const Contents = styled.div`
     max-width: 590px;
     max-height: 391.7px;
 
-    background-image: url("/images/I03_BeenirudaCharacterSet/beenirudaBlack.png");
+    background-image: url('/images/I03_BeenirudaCharacterSet/beenirudaBlack.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -145,12 +144,15 @@ const Contents = styled.div`
     }
 
     & .title {
+      display: flex;
+      gap: 20px;
       position: absolute;
       bottom: 0;
       left: 50%;
       transform: translate(-50%, 50%);
-      font-family: "RockSalt";
-      font-size: clamp(16px, 3vw, 35px);
+
+      font-family: 'RockSalt';
+      font-size: clamp(16px, 2vw, 20px);
       color: #000;
       & :first-child {
         color: #ffa6c4;
@@ -162,12 +164,32 @@ const Contents = styled.div`
       }
     }
   }
+`;
+
+const Model3D = styled.div`
+  display: flex;
+  position: relative;
+  padding-top: 10px;
+
+  width: 100%;
+  max-width: 1190px;
+  height: 100%;
+  /* aspect-ratio: 1275/256; */
+
+  ${media.mobile} {
+    aspect-ratio: unset;
+    height: 20%;
+    margin-left: 30px;
+  }
+
   & .subTitle {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    position: absolute;
+    top: 75%;
+    gap: 5px;
 
     width: 100%;
 
@@ -178,19 +200,5 @@ const Contents = styled.div`
     ${media.mobile} {
       gap: 5px;
     }
-  }
-`;
-
-const Model3D = styled.div`
-  display: flex;
-
-  width: 100%;
-  max-width: 1190px;
-  aspect-ratio: 1275/256;
-
-  ${media.mobile} {
-    aspect-ratio: unset;
-    height: 20%;
-    margin-left: 30px;
   }
 `;

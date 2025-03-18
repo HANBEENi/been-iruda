@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { media } from "@/styles/mediaQuery";
-import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
-import { useFrame, Canvas, useThree } from "@react-three/fiber";
-import { Suspense, useEffect, useRef } from "react";
-import { styled } from "styled-components";
-import * as THREE from "three";
+import { media } from '@/styles/mediaQuery';
+import { OrbitControls, PerspectiveCamera, useGLTF } from '@react-three/drei';
+import { useFrame, Canvas, useThree } from '@react-three/fiber';
+import { Suspense, useEffect, useRef } from 'react';
+import { styled } from 'styled-components';
+import * as THREE from 'three';
 
 const AnimatedModel = () => {
-  const gltf = useGLTF("models/Text3D_beeniruda/beeniruda3D.gltf");
+  const gltf = useGLTF('models/Text3D_beeniruda/beeniruda3D.gltf');
   const mixer = useRef<THREE.AnimationMixer | null>(null);
 
   // 애니메이션 로직
@@ -35,7 +35,7 @@ const AnimatedModel = () => {
           (mesh.material as THREE.MeshStandardMaterial).color
         ) {
           const material = mesh.material as THREE.MeshStandardMaterial;
-          material.color.set("#f6456e"); // 빨간색으로 설정
+          material.color.set('#f6456e'); // 빨간색으로 설정
         }
       }
     });
@@ -77,7 +77,7 @@ const MainSlide01 = () => {
       <Model>
         <Vinyl />
         <Canvas
-          style={{ height: "100%", width: "100%" }}
+          style={{ height: '100%', width: '100%' }}
           camera={{ position: [0, 0, 5], fov: 1.55 }}
         >
           <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={1.55} />
@@ -114,12 +114,11 @@ const Contents = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
-  gap: 20px;
+  gap: 10px;
   z-index: 1;
 
   max-width: 780px;
-  height: calc(100% - 80px);
+  height: calc(100% - 100px);
 
   ${media.tablet} {
     padding: 40px 0;
@@ -134,7 +133,7 @@ const Title = styled.div`
   width: 100%;
 
   color: #000;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
   white-space: nowrap;
 
@@ -145,20 +144,21 @@ const Title = styled.div`
   & .kimhanbeen {
     display: flex;
     position: absolute;
-    right: -100%;
+    top: 20%;
+    right: -45%;
     transform: translate(-58%, -34%);
 
-    width: 80%;
+    width: 50%;
     aspect-ratio: 521/185;
 
-    background-image: url("images/I03_BeenirudaCharacterSet/kimhanbeen.png");
+    background-image: url('images/I03_BeenirudaCharacterSet/kimhanbeen.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 
     ${media.tablet} {
-      top: -5%;
-      left: 62%;
+      top: 20%;
+      right: -25%;
       width: 40%;
     }
     ${media.mobile} {
@@ -177,7 +177,7 @@ const SubTitle = styled.div`
   width: 100%;
 
   color: #ffa6c4;
-  font-size: 22px;
+  font-size: 20px;
 
   ${media.mobile} {
     font-size: 16px;
@@ -204,7 +204,7 @@ const Vinyl = styled.div`
   width: 100%;
   height: 100%;
 
-  background-image: url("images/I11_Etc/vinyl.png");
+  background-image: url('images/I11_Etc/vinyl.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
