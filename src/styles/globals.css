@@ -1,10 +1,12 @@
+/* 글로벌 스타일 */
+
 :root {
   /* 기본 화이트 모드 */
   --background-color: #fff;
   --text-color: #000;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   /* 설정 다크 모드 */
   --background-color: #000;
   --text-color: #fff;
