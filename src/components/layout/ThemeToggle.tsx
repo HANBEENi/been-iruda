@@ -7,11 +7,11 @@
 import { useTheme } from '@/context/ThemeContext';
 
 export default function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme();
+  const { themeMode, toggleTheme } = useTheme();
 
   return (
     <button onClick={toggleTheme}>
-      {theme === 'light' ? '🌙 다크모드' : '☀️ 화이트모드'}
+      {themeMode === 'light' ? '🌙 다크모드' : '☀️ 화이트모드'}
     </button>
   );
 }

@@ -5,12 +5,9 @@
 // SSR에서 스타일컴포넌트 렌더링 적용
 
 import type { Metadata } from 'next';
-import '@/styles/globals.css';
-import '@/styles/themes.css';
-import '@/styles/locomotive.css';
-import StyledComponentsRegistry from '@/lib/StyledComponentsRegistry';
-import { ThemeProvider } from '@/context/ThemeContext';
 import { Inter } from 'next/font/google';
+import ClientLayout from '@/context/ClientLayout';
+import '@/styles/locomotive.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,9 +24,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={inter.className}>
-        <ThemeProvider>
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-        </ThemeProvider>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
