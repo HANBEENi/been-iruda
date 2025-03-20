@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 const paddingTop = 50;
 const SectionLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <Layout $paddingTop={paddingTop}>
+    <Layout $paddingTop={paddingTop} className="global-layout">
       <Contents>{children}</Contents>
     </Layout>
   );

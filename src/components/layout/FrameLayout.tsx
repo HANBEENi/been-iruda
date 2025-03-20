@@ -1,5 +1,10 @@
 /* 프레임 레이아웃 */
 
+/**
+ * [TODO]
+ * - stylus intro에선 없고, musicMe에서 나타나는 애니메이션 효과 적용(자연스러운모션 적용)
+ */
+
 import { styled } from 'styled-components';
 import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -30,22 +35,6 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
 
     const sections = gsap.utils.toArray<HTMLElement>('.section');
     if (!lpCover || sections.length === 0) return;
-    // LP 커버 애니메이션 (스크롤 시 내려가고 사라짐)
-    // gsap.to(lpCover, {
-    //   y: 800, // 아래로 이동
-    //   // opacity: 0, // 점점 사라짐
-    //   ease: 'power2.out',
-    //   scrollTrigger: {
-    //     trigger: sections[0], // 첫 번째 섹션이 나타날 때 트리거
-    //     start: 'top 50%',
-    //     end: 'top 20%',
-    //     scrub: 1,
-    //     toggleActions: 'play none reverse none',
-    //   },
-    //   onComplete: () => {
-    //     gsap.set(lpCover, { display: 'none' }); // LP 커버 완전히 숨기기
-    //   },
-    // });
     sections.forEach((section, index) => {
       gsap.fromTo(
         section,
@@ -176,6 +165,7 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
 
       {/* 3. LP레코드고정 */}
       <LpRecode />
+      {currentSection !== 'intro' && <LpStylus />}
 
       {/* 4. 현재뮤직표시 */}
       <CurrentMusic />
@@ -343,7 +333,7 @@ const LpRecode = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50.3%, -50%);
   margin-top: 25px;
 
   width: 100%;
@@ -353,4 +343,16 @@ const LpRecode = styled.div`
   background-size: contain;
 
   pointer-events: none;
+`;
+
+const LpStylus = styled.div`
+  position: fixed;
+  bottom: -30px;
+  left: 60%;
+
+  width: 360px;
+  aspect-ratio: 363/418;
+
+  background-image: url('/images/lp-stylus.png');
+  background-size: contain;
 `;
