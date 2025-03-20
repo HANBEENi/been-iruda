@@ -11,6 +11,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-position:center;
+    background-repeat: no-repeat;
   }
 
   /* 📌 전역 스타일 */
@@ -51,6 +53,7 @@ const GlobalStyle = createGlobalStyle`
   button{
     background: none;
     border:none;
+    cursor: pointer;
   }
 
   /* 📌 반응형 적용 */
