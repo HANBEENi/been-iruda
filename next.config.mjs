@@ -1,9 +1,8 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   compiler: {
     styledComponents: true,
   },
 };
-
 export default nextConfig;
