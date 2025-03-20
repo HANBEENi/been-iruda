@@ -3,6 +3,16 @@ export const light = {
   text: '#000000',
   primary: '#3498db',
   secondary: '#2ecc71',
+
+  themeButton: {
+    backgroundImage: '/images/theme-button-background.png',
+    icon: '/images/theme-button-icon.png',
+  },
+
+  marquee: {
+    color: '#fff',
+    background: '#000',
+  },
 };
 
 export const dark = {
@@ -10,6 +20,16 @@ export const dark = {
   text: '#ffffff',
   primary: '#9b59b6',
   secondary: '#e74c3c',
+
+  themeButton: {
+    backgroundImage: '/images/theme-button-background-dark.png',
+    icon: '/images/theme-button-icon-dark.png',
+  },
+
+  marquee: {
+    color: '#000',
+    background: '#fff',
+  },
 };
 
 export const theme = { light, dark };
