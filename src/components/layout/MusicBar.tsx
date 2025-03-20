@@ -15,14 +15,13 @@ import {
   ShuffleSVG,
   StopPlaySVG,
 } from '../../../public/icons/SVG';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { media } from '@/styles/mediaQuery';
-import { musicList } from '@/utils/musicData';
+import { useMusic } from '@/context/MusicContext';
 
 /* 뮤직바(배경+버튼셋) ------------------------------------------------------- */
 const MusicBar = () => {
   const [isMusicBarOpen, setIsMusicBarHidden] = useState<boolean>(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   return (
     <Layout $isMusicBarOpen={isMusicBarOpen}>
@@ -30,7 +29,7 @@ const MusicBar = () => {
         <MusicBarBackground />
       </div>
       <div className="music-controls">
-        <MusicControls audioRef={audioRef} />
+        <MusicControls />
       </div>
     </Layout>
   );
@@ -39,39 +38,13 @@ const MusicBar = () => {
 export default MusicBar;
 
 /* 뮤직컨트롤버튼셋 ---------------------------------------------------------- */
-interface MusicControlsProps {
-  audioRef?: React.RefObject<HTMLAudioElement>;
-}
 
-export const MusicControls = ({ audioRef }: MusicControlsProps) => {
-  const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
-  const [isPlaying, setIsPlaying] = useState(false); //재생여부
+export const MusicControls = () => {
+  const { togglePlayPause, playNextTrack, playPrevTrack, isPlaying } =
+    useMusic();
+
   const [repeat, setRepeat] = useState(false); //반복재생여부
   const [shuffle, setShuffle] = useState(false); //셔플여부
-
-  // 재생 및 정지 토글
-  const togglePlayPause = () => {
-    if (!audioRef?.current) return;
-
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  // 다음곡 재생
-  const playNextTrack = () => {
-    setCurrentTrackIndex((prev) => (prev + 1) % musicList.length);
-  };
-
-  // 이전곡 재생
-  const playPrevTrack = () => {
-    setCurrentTrackIndex(
-      (prev) => (prev - 1 + musicList.length) % musicList.length
-    );
-  };
 
   return (
     <MusicControlsLayout>
@@ -90,7 +63,6 @@ export const MusicControls = ({ audioRef }: MusicControlsProps) => {
       <MusicIcon onClick={() => setRepeat(!repeat)} $active={repeat}>
         <RepeatSVG />
       </MusicIcon>
-      <audio ref={audioRef} src={musicList[currentTrackIndex].audioUrl} />
     </MusicControlsLayout>
   );
 };

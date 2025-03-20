@@ -9,15 +9,14 @@ import { styled } from 'styled-components';
 import SectionLayout from '../layout/SectionLayout';
 import { MusicControls } from '../layout/MusicBar';
 import MusicLyricsView from '../layout/MusicLyricsView';
+import { musicList } from '@/utils/musicData';
+import { useMusic } from '@/context/MusicContext';
+import MusicTimeLine from '../layout/MusicTimeLine';
 
 const MusicMe = () => {
-  const musicList = [
-    {
-      title: '프론트엔드의 길',
-      thumbnail: '/images/lp-cover-portfolio.png',
-      lyrics: '',
-    },
-  ];
+  const { currentTrackIndex } = useMusic();
+  const currentTrack = musicList[currentTrackIndex];
+
   return (
     <SectionLayout>
       {/* 1. 섹션 태그 -------------------- */}
@@ -31,18 +30,18 @@ const MusicMe = () => {
       {/* 2. 뮤직 플레이 ------------------- */}
       <Wrap id="music-play-wrap">
         <MusicPlayWrap>
-          <Thumbnail $thumbnail={musicList[0].thumbnail}>
+          <Thumbnail $thumbnail={currentTrack.thumbnail}>
             <div className="thumbnail" />
           </Thumbnail>
           <Title>
-            <span>프론트엔드의 길</span>
+            <span>{currentTrack.title}</span>
             <span>Made With Suno</span>
           </Title>
           <MusicControlsWrap>
-            <PlayLine></PlayLine>
-            <Controls>
+            <MusicTimeLine />
+            <div className="music-controls">
               <MusicControls />
-            </Controls>
+            </div>
           </MusicControlsWrap>
           <Lyrics>
             <MusicLyricsView />
@@ -141,12 +140,14 @@ const Title = styled.div`
     font-weight: light;
   }
 `;
-const MusicControlsWrap = styled.div``;
-const PlayLine = styled.div``;
-const Controls = styled.div``;
+const MusicControlsWrap = styled.div`
+  & .music-controls {
+    height: 60px;
+  }
+`;
 const Lyrics = styled.div`
   display: flex;
-  overflow: scroll;
+  overflow: hidden;
 `;
 
 /* 알림목록 ------------------------------------------------------- */

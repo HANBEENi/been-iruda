@@ -8,6 +8,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import ClientLayout from '@/context/ClientLayout';
 import '@/styles/locomotive.css';
+import { MusicProvider } from '@/context/MusicContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={inter.className}>
-        <ClientLayout>{children}</ClientLayout>
+        <ClientLayout>
+          <MusicProvider>{children}</MusicProvider>
+        </ClientLayout>
       </body>
     </html>
   );
