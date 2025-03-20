@@ -25,11 +25,12 @@ const MarqueeContainer = styled.div`
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
+  z-index: 1004;
 
   width: 100%;
   height: 25px;
 
-  background: #000;
+  background: ${({ theme }) => theme.marquee.background};
 `;
 
 const MarqueeContent = styled.div<{ arrow: 'right' | 'left' }>`
@@ -40,7 +41,6 @@ const MarqueeContent = styled.div<{ arrow: 'right' | 'left' }>`
 
   font-size: 14px;
   font-weight: bold;
-  color: white;
   text-transform: uppercase;
 
   /* ✅ 마퀴 애니메이션 */
@@ -70,9 +70,10 @@ const MarqueeContent = styled.div<{ arrow: 'right' | 'left' }>`
 const MarqueeInner = styled.div`
   display: flex;
   white-space: nowrap;
-  font-size: 14px;
-  font-weight: bold;
-  color: white;
   text-transform: uppercase;
   padding-right: 20px;
+
+  color: ${({ theme }) => theme.marquee.color};
+  font-size: 14px;
+  font-weight: bold;
 `;

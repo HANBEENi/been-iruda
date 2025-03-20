@@ -6,9 +6,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 
 import Marquee from './Marquee';
-import { LogoSVG, MusicBarSVG } from '../../../public/icons/SVG';
-import { theme } from '@/styles/themes';
+import { BurgerMenuSVG } from '../../../public/icons/SVG';
 import MusicBar from '@/components/layout/MusicBar';
+import ThemeButton from './ThemeButton';
+import { media } from '@/styles/mediaQuery';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,10 +45,18 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
       <Header>
         <Marquee arrow={'left'} />
         <Nav className="global-layout">
-          <Logo>
-            <LogoSVG />
-          </Logo>
+          <LogoWrap>
+            <Logo />
+            <ThemeButton />
+          </LogoWrap>
+          {/* 좌측: 로고 & 다크모드 버튼 */}
+
+          {/* 중앙: 음악 바 */}
+          {/* <CenterWrapper> */}
           <MusicBar />
+          {/* </CenterWrapper> */}
+
+          {/* 우측: 메뉴 */}
           <Menu>
             {sections.map((i, idx) => (
               <MenuItem
@@ -57,6 +66,9 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
                 {i.menuName}
               </MenuItem>
             ))}
+            <div className="burger-menu">
+              <BurgerMenuSVG />
+            </div>
           </Menu>
         </Nav>
       </Header>
@@ -109,33 +121,89 @@ const Layout = styled.div`
 const Header = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 60px;
 
   width: 100%;
   height: 77px;
 `;
-const Nav = styled.div`
+const Nav = styled.nav`
   display: flex;
-  position: relative;
+  align-items: center;
   justify-content: space-between;
+  height: fit-content;
+  position: relative;
+
+  width: 100%;
+  height: 70px;
+  ${media.tablet} {
+    height: 55px;
+  }
+  ${media.mobile} {
+    height: 35px;
+  }
+`;
+
+/** 로고 & 다크모드 버튼 */
+const LogoWrap = styled.div`
+  display: flex;
+  align-items: center;
+  flex: 1; /* ✅ 좌측 영역 확보 */
+  gap: 20px;
+  z-index: 1005;
+
   height: 100%;
 `;
+
+/** 로고 */
 const Logo = styled.div`
   display: flex;
   align-items: center;
+  max-width: 150px;
+  min-width: 80px;
+  width: 100%;
+  height: 100%;
 
-  width: 150px;
+  background-image: url('/images/logo.png');
+  background-size: contain;
+
+  cursor: pointer;
 `;
 
+/** 메뉴 */
 const Menu = styled.ul`
   display: flex;
+  flex: 1; /* ✅ 우측 영역 확보 */
+  justify-content: flex-end; /* ✅ 오른쪽 정렬 */
   align-items: center;
   gap: 15px;
   white-space: nowrap;
+  z-index: 1005;
+
+  /* 반응형: 해상도가 줄어들면 메뉴 간격 조절 */
+  ${media.tablet} {
+    gap: 10px;
+  }
+
+  .burger-menu {
+    display: none;
+
+    width: 30px;
+    cursor: pointer;
+
+    ${media.tablet} {
+      display: flex;
+    }
+  }
 `;
 
 const MenuItem = styled.li<{ $isActive: boolean }>`
+  ${media.tablet} {
+    display: none;
+  }
   font-family: ${({ $isActive }) =>
     $isActive ? 'RockSalt, sans-serif' : 'inherit'};
+
+  cursor: pointer;
 `;
 
 /** 컨텐츠내부(children) */
@@ -150,6 +218,7 @@ const Footer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 25px;
+  padding-top: 25px;
 `;
 const Info = styled.div`
   display: flex;
