@@ -15,11 +15,26 @@ export default function Home() {
   return (
     <Layout>
       <FrameLayout>
-        <Intro />
+        <div id="intro" className="section">
+          <Intro />
+        </div>
+        <div id="musicMe" className="section">
+          <MusicMe />
+        </div>
+        <div id="projects" className="section">
+          <Projects />
+        </div>
+        <div id="skills" className="section">
+          <Skills />
+        </div>
+        <div id="contact" className="section">
+          <Contact />
+        </div>
+        {/* <Intro />
         <MusicMe />
         <Projects />
         <Skills />
-        <Contact />
+        <Contact /> */}
       </FrameLayout>
     </Layout>
   );

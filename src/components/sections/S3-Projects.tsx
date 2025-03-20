@@ -1,16 +1,13 @@
 import { styled } from 'styled-components';
+import SectionLayout from '../layout/SectionLayout';
 
 const Projects = () => {
   return (
-    <Layout>
-      <></>
-    </Layout>
+    <SectionLayout>
+      <div
+        style={{ background: '#0095ff', width: '100%', height: '100%' }}
+      ></div>
+    </SectionLayout>
   );
 };
 export default Projects;
-const Layout = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 100vw;
-  background: #418d53;
-`;

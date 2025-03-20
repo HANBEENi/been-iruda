@@ -1,39 +1,33 @@
 'use client';
 
+/* Intro 섹션 */
+
 import { styled } from 'styled-components';
 import Model3DViewer from '../modules/Model3D-Portfolio';
+import SectionLayout from '../layout/SectionLayout';
 
 const Intro = () => {
   return (
-    <Layout>
-      <Contents>
+    <SectionLayout>
+      <LpCover>
         <Model3D>
           <Model3DViewer />
         </Model3D>
-      </Contents>
-    </Layout>
+      </LpCover>
+    </SectionLayout>
   );
 };
 
 export default Intro;
 
-const Layout = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 100%;
-`;
-
-const Contents = styled.div`
+const LpCover = styled.div`
   display: flex;
 
   width: 100%;
   max-width: 833px;
   height: 100%;
 
-  background-image: url('/images/lp-main.png');
+  background-image: url('/images/lp-cover-main.png');
   background-size: contain;
 `;
 

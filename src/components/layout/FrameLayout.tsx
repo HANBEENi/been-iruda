@@ -1,51 +1,73 @@
-/* 상하단 마퀴효과 및 헤더, 음악표시 */
+/* 프레임 레이아웃 */
 
 import { styled } from 'styled-components';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import gsap from 'gsap';
 
-import Marquee from './Marquee';
+import { media } from '@/styles/mediaQuery';
 import { BurgerMenuSVG } from '../../../public/icons/SVG';
+import Marquee from './Marquee';
 import MusicBar from '@/components/layout/MusicBar';
 import ThemeButton from './ThemeButton';
-import { media } from '@/styles/mediaQuery';
 import ArrowAnimation from '../modules/ArrowAnimation';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const FrameLayout = ({ children }: { children: ReactNode }) => {
-  const [isCurrentSection, setIsCurrentSection] = useState<string>('intro');
-
-  // 섹션 데이터
-  const sections = [
-    { menuName: 'INTRO', sectionName: 'main' },
-    { menuName: 'ABOUT ME', sectionName: 'resume' },
-    { menuName: 'PROJECTS', sectionName: 'projects' },
-    { menuName: 'SKILLS', sectionName: 'skills' },
-    { menuName: 'CONTACT', sectionName: 'contact' },
-  ];
+  const [currentSection, setCurrentSection] = useState<string>('intro');
+  const mainContentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const sections = document.querySelectorAll('.section');
+    const mainContainer = mainContentRef.current;
+    if (!mainContainer) return;
+
+    const sections = gsap.utils.toArray<HTMLElement>('.section');
+    if (sections.length === 0) return;
+
     sections.forEach((section) => {
-      gsap.to(section, {
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          pin: true,
-          scrub: 1,
-          end: '+=100%',
+      ScrollTrigger.create({
+        trigger: section,
+        scroller: mainContainer, // 스크롤 컨테이너 지정
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: () => {
+          const sectionId = section.getAttribute('id');
+          setCurrentSection(sectionId || '');
+        },
+        onEnterBack: () => {
+          const sectionId = section.getAttribute('id');
+          setCurrentSection(sectionId || '');
         },
       });
     });
+
+    ScrollTrigger.refresh();
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, []);
 
+  /** 특정 섹션으로 이동하는 함수 */
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    const mainContainer = mainContentRef.current;
+
+    if (section && mainContainer) {
+      gsap.to(mainContainer, {
+        duration: 1,
+        scrollTo: { y: section.offsetTop, autoKill: false },
+      });
+    }
+  };
+
   return (
-    <Layout data-scroll-container>
+    <Layout>
       {/* I. 헤더(Header) */}
       <Header>
-        <Marquee arrow={'left'} />
+        <Marquee $arrow={'left'} />
         <Nav className="global-layout">
           {/* 좌측: 로고 & 다크모드 버튼 */}
           <LogoWrap>
@@ -58,14 +80,36 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
 
           {/* 우측: 메뉴 */}
           <Menu>
-            {sections.map((i, idx) => (
-              <MenuItem
-                key={idx}
-                $isActive={isCurrentSection === i.sectionName}
-              >
-                {i.menuName}
-              </MenuItem>
-            ))}
+            <MenuItem
+              $active={currentSection === 'intro'}
+              onClick={() => scrollToSection('intro')}
+            >
+              INTRO
+            </MenuItem>
+            <MenuItem
+              $active={currentSection === 'musicMe'}
+              onClick={() => scrollToSection('musicMe')}
+            >
+              MUSIC ME
+            </MenuItem>
+            <MenuItem
+              $active={currentSection === 'projects'}
+              onClick={() => scrollToSection('projects')}
+            >
+              PROJECTS
+            </MenuItem>
+            <MenuItem
+              $active={currentSection === 'skills'}
+              onClick={() => scrollToSection('skills')}
+            >
+              SKILLS
+            </MenuItem>
+            <MenuItem
+              $active={currentSection === 'contact'}
+              onClick={() => scrollToSection('contact')}
+            >
+              CONTACT
+            </MenuItem>
             <div className="burger-menu">
               <BurgerMenuSVG />
             </div>
@@ -74,7 +118,9 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
       </Header>
 
       {/* II. 컨텐츠(children) */}
-      <MainContent>{children}</MainContent>
+
+      <LpRecode />
+      <MainContent ref={mainContentRef}>{children}</MainContent>
 
       {/* III. 푸터(Footer) */}
       <Footer>
@@ -84,10 +130,10 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
           </span>
           <span style={{ color: '#FF6297' }}>been.iruda@gmail.com</span>
         </Info>
-        <Marquee arrow={'right'} />
+        <Marquee $arrow={'right'} />
       </Footer>
 
-      {isCurrentSection === 'intro' && <ArrowAnimation />}
+      {currentSection === 'intro' && <ArrowAnimation />}
 
       <div className="bottom-effect" />
     </Layout>
@@ -101,6 +147,7 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 
   width: 100vw;
   height: 100vh;
@@ -123,7 +170,6 @@ const Layout = styled.div`
 const Header = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 60px;
 
   width: 100%;
   height: 77px;
@@ -199,12 +245,12 @@ const Menu = styled.ul`
   }
 `;
 
-const MenuItem = styled.li<{ $isActive: boolean }>`
+const MenuItem = styled.li<{ $active: boolean }>`
   ${media.tablet} {
     display: none;
   }
-  font-family: ${({ $isActive }) =>
-    $isActive ? 'RockSalt, sans-serif' : 'inherit'};
+  font-family: ${({ $active }) =>
+    $active ? 'RockSalt, sans-serif' : 'inherit'};
 
   cursor: pointer;
 `;
@@ -220,13 +266,32 @@ const MainContent = styled.div`
 const Footer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  padding-top: 25px;
+
+  height: 77px;
 `;
 const Info = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  flex: 1;
 
   font-size: 13px;
   font-weight: medium;
+`;
+
+const LpRecode = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 25px;
+
+  width: 100%;
+  height: calc(100% - 77px - 77px - 50px); //상위paddingTop만큼
+
+  background-image: url('/images/lp-recode.png');
+  background-size: contain;
+
+  pointer-events: none;
 `;

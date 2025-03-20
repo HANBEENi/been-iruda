@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
-const Marquee = ({ arrow }: { arrow: 'right' | 'left' }) => {
+const Marquee = ({ $arrow }: { $arrow: 'right' | 'left' }) => {
   return (
     <MarqueeContainer>
-      <MarqueeContent arrow={arrow}>
+      <MarqueeContent $arrow={$arrow}>
         <MarqueeInner>
           {'REACT • NEXT.JS • TYPESCRIPT • UI/UX DESIGN • BUILDING USER-CENTRIC EXPERIENCES • CODE WITH PASSION, DEPLOY WITH CONFIDENCE • PERFORMANCE OPTIMIZATION • CLEAN CODE • '.repeat(
             5
@@ -33,7 +33,7 @@ const MarqueeContainer = styled.div`
   background: ${({ theme }) => theme.marquee.background};
 `;
 
-const MarqueeContent = styled.div<{ arrow: 'right' | 'left' }>`
+const MarqueeContent = styled.div<{ $arrow: 'right' | 'left' }>`
   display: flex;
   padding-right: 20px;
 
@@ -44,8 +44,8 @@ const MarqueeContent = styled.div<{ arrow: 'right' | 'left' }>`
   text-transform: uppercase;
 
   /* ✅ 마퀴 애니메이션 */
-  animation: ${({ arrow }) =>
-      arrow === 'right' ? 'marqueeRight' : 'marqueeLeft'}
+  animation: ${({ $arrow }) =>
+      $arrow === 'right' ? 'marqueeRight' : 'marqueeLeft'}
     /* 40s linear infinite; */ 70s linear infinite;
 
   @keyframes marqueeLeft {

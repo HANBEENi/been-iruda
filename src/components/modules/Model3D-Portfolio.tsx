@@ -1,6 +1,10 @@
 'use client';
 
 /* PORTFOLIO 3D 모델 불러오기 */
+/*
+ * [TODO: 마우스 조작 돌아오기 및 모델 잘림 해결]
+ * [TODO: 모델 사이즈 및 조명 조절(피그마 디자인과 맞추기)]
+ */
 
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, useGLTF } from '@react-three/drei';

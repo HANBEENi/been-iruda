@@ -9,6 +9,7 @@
 import React, { useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
+import { ThemeContextProvider } from './ThemeContext';
 
 export default function StyledComponentsRegistry({
   children,
@@ -22,7 +23,7 @@ export default function StyledComponentsRegistry({
 
   return (
     <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
-      {children}
+      <ThemeContextProvider>{children}</ThemeContextProvider>
     </StyleSheetManager>
   );
 }

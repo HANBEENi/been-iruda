@@ -1,17 +1,11 @@
 import { styled } from 'styled-components';
+import SectionLayout from '../layout/SectionLayout';
 
 const MusicMe = () => {
   return (
-    <Layout>
-      <></>
-    </Layout>
+    <SectionLayout>
+      <div style={{ background: '#000', width: '100%', height: '100%' }}></div>
+    </SectionLayout>
   );
 };
 export default MusicMe;
-
-const Layout = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 100vw;
-  background: #8d8041;
-`;

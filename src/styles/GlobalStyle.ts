@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
     transition: background 0.3s, color 0.3s;
 
     overflow-x: hidden;
+    overflow:hidden;
 
   /* ✅ 크롬, 사파리, 엣지에서 스크롤바 숨기기 */
   ::-webkit-scrollbar {

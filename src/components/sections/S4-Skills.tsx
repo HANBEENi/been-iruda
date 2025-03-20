@@ -1,16 +1,13 @@
 import { styled } from 'styled-components';
+import SectionLayout from '../layout/SectionLayout';
 
 const Skills = () => {
   return (
-    <Layout>
-      <></>
-    </Layout>
+    <SectionLayout>
+      <div
+        style={{ background: '#59ff00', width: '100%', height: '100%' }}
+      ></div>
+    </SectionLayout>
   );
 };
 export default Skills;
-const Layout = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 100vw;
-  background: #41508d;
-`;

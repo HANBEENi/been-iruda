@@ -2,7 +2,8 @@
 
 export const light = {
   /* 기본설정 */
-  background: 'linear-gradient(180deg, #FFFFFF 0%, #EDEDED 100%)',
+  background:
+    'linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(237, 237, 237, 0.9) 100%)',
   text: '#000000',
   logo: '/images/logo.png',
 
@@ -31,7 +32,8 @@ export const light = {
 
 export const dark = {
   /* 기본설정 */
-  background: '#000000',
+  background:
+    'linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(26, 26, 26, 0.9) 100%)',
   text: '#ffffff',
   logo: '/images/logo-dark.png',
 
