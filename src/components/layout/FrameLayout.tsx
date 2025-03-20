@@ -12,6 +12,7 @@ import Marquee from './Marquee';
 import MusicBar from '@/components/layout/MusicBar';
 import ThemeButton from './ThemeButton';
 import ArrowAnimation from '../modules/ArrowAnimation';
+import CurrentMusic from './CurrentMusic';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -20,13 +21,66 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
   const mainContentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const lpCover = document.querySelector('.lp-cover');
     const mainContainer = mainContentRef.current;
     if (!mainContainer) return;
 
-    const sections = gsap.utils.toArray<HTMLElement>('.section');
-    if (sections.length === 0) return;
+    // 초기 상태 설정 (애니메이션 적용 전에)
+    gsap.set(lpCover, { opacity: 1, display: 'block' });
 
-    sections.forEach((section) => {
+    const sections = gsap.utils.toArray<HTMLElement>('.section');
+    if (!lpCover || sections.length === 0) return;
+    // LP 커버 애니메이션 (스크롤 시 내려가고 사라짐)
+    // gsap.to(lpCover, {
+    //   y: 800, // 아래로 이동
+    //   // opacity: 0, // 점점 사라짐
+    //   ease: 'power2.out',
+    //   scrollTrigger: {
+    //     trigger: sections[0], // 첫 번째 섹션이 나타날 때 트리거
+    //     start: 'top 50%',
+    //     end: 'top 20%',
+    //     scrub: 1,
+    //     toggleActions: 'play none reverse none',
+    //   },
+    //   onComplete: () => {
+    //     gsap.set(lpCover, { display: 'none' }); // LP 커버 완전히 숨기기
+    //   },
+    // });
+    sections.forEach((section, index) => {
+      gsap.fromTo(
+        section,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 75%',
+            end: 'top 50%',
+            scrub: 1,
+            toggleActions: 'play none none reverse', // ✅ 스크롤을 올리면 다시 적용되도록 설정
+          },
+        }
+      );
+
+      gsap.fromTo(
+        section,
+        { opacity: 0.3, y: 100 }, // 시작 상태: 약간 아래 위치 & 흐린 상태
+        {
+          opacity: 1,
+          y: 0, // 부드럽게 원래 위치로 올라옴
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            scroller: mainContainer, // 스크롤 컨테이너 지정
+            start: 'top 75%', // 뷰포트의 75% 지점에서 애니메이션 시작
+            end: 'top 25%', // 25% 위치에서 종료
+            scrub: 1, // ✅ 스크롤에 따라 부드럽게 이동
+          },
+        }
+      );
+
       ScrollTrigger.create({
         trigger: section,
         scroller: mainContainer, // 스크롤 컨테이너 지정
@@ -65,7 +119,7 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <Layout>
-      {/* I. 헤더(Header) */}
+      {/* 1. 헤더(Header) */}
       <Header>
         <Marquee $arrow={'left'} />
         <Nav className="global-layout">
@@ -117,12 +171,16 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
         </Nav>
       </Header>
 
-      {/* II. 컨텐츠(children) */}
-
-      <LpRecode />
+      {/* 2. 컨텐츠(children) */}
       <MainContent ref={mainContentRef}>{children}</MainContent>
 
-      {/* III. 푸터(Footer) */}
+      {/* 3. LP레코드고정 */}
+      <LpRecode />
+
+      {/* 4. 현재뮤직표시 */}
+      <CurrentMusic />
+
+      {/* 5. 푸터(Footer) */}
       <Footer>
         <Info className="global-layout">
           <span style={{ color: '#9A9A9A' }}>
@@ -260,6 +318,7 @@ const MainContent = styled.div`
   flex: 1;
   overflow-y: auto;
   position: relative;
+  z-index: 1004;
 `;
 
 /** 푸터 */

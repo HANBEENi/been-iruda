@@ -30,11 +30,6 @@ export default function Home() {
         <div id="contact" className="section">
           <Contact />
         </div>
-        {/* <Intro />
-        <MusicMe />
-        <Projects />
-        <Skills />
-        <Contact /> */}
       </FrameLayout>
     </Layout>
   );

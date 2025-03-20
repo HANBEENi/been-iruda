@@ -5,11 +5,20 @@
 import { styled } from 'styled-components';
 import Model3DViewer from '../modules/Model3D-Portfolio';
 import SectionLayout from '../layout/SectionLayout';
+import { useEffect, useRef } from 'react';
 
 const Intro = () => {
+  const lpCoverRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (lpCoverRef.current) {
+      lpCoverRef.current.classList.add('lp-cover');
+    }
+  }, []);
+
   return (
     <SectionLayout>
-      <LpCover>
+      <LpCover ref={lpCoverRef}>
         <Model3D>
           <Model3DViewer />
         </Model3D>
@@ -22,6 +31,9 @@ export default Intro;
 
 const LpCover = styled.div`
   display: flex;
+
+  opacity: 1;
+  transition: opacity 0.5s ease-out; /* ✅ 자연스럽게 사라지는 효과 */
 
   width: 100%;
   max-width: 833px;
