@@ -1,5 +1,8 @@
 /* 상단 뮤직바 (셔플,이전노래,노래재생정지,다음노래,반복) */
 
+/*[TODO: useTheme()오류해결, 뮤직재생버튼 색상 적용] */
+/*[TODO: 애니메이션 동작 넣을지 여부에 따른 기능 구현] */
+
 import { styled } from 'styled-components';
 import {
   AfterMusicSVG,
@@ -18,24 +21,24 @@ const MusicBar = () => {
   return (
     <Layout $isMusicBarOpen={isMusicBarOpen}>
       <div className="background">
-        <MusicBarSVG />
+        <MusicBarBackground />
       </div>
       <MusicControls>
-        <button>
+        <MusicIcon>
           <ShuffleSVG />
-        </button>
-        <button>
+        </MusicIcon>
+        <MusicIcon>
           <BeforMusicSVG />
-        </button>
-        <button className="stop-play">
+        </MusicIcon>
+        <MusicIcon className="stop-play">
           <StopPlaySVG />
-        </button>
-        <button>
+        </MusicIcon>
+        <MusicIcon>
           <AfterMusicSVG />
-        </button>
-        <button>
+        </MusicIcon>
+        <MusicIcon>
           <RepeatSVG />
-        </button>
+        </MusicIcon>
       </MusicControls>
     </Layout>
   );
@@ -53,13 +56,9 @@ const Layout = styled.div<{ $isMusicBarOpen: boolean }>`
   top: 0;
 
   width: 100%;
-  /* min-width: 400px; */
-  /* height: fit-content; */
 
   transition: transform 0.8s ease-in-out, opacity 0.6s ease-in-out;
   transform-origin: top; /* ✅ 아래에서 위로 줄어들도록 설정 */
-  /* transform: ${({ $isMusicBarOpen }) =>
-    $isMusicBarOpen ? 'scaleY(0)' : 'scaleY(1)'}; */
 
   ${media.mobile} {
     min-width: 300px;
@@ -83,6 +82,18 @@ const Layout = styled.div<{ $isMusicBarOpen: boolean }>`
   }
 `;
 
+/** MusicBar 배경 */
+const MusicBarBackground = styled(MusicBarSVG)`
+  svg {
+    width: 100%;
+    height: 100%;
+    color: ${({ theme }) =>
+      theme.musicBar.background}; /* ✅ 다크모드 시 흰색 */
+    fill: ${({ theme }) => theme.musicBar.iconColor}; /* ✅ 다크모드 시 검정 */
+  }
+`;
+
+/** 컨트롤 버튼셋 */
 const MusicControls = styled.div`
   display: flex;
   position: absolute;
@@ -118,5 +129,12 @@ const MusicControls = styled.div`
   svg {
     width: 100%;
     height: 100%;
+  }
+`;
+
+/** 컨트롤 버튼 */
+const MusicIcon = styled.div`
+  svg {
+    color: ${({ theme }) => theme.musicBar.iconColor};
   }
 `;

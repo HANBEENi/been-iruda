@@ -10,11 +10,13 @@ import { BurgerMenuSVG } from '../../../public/icons/SVG';
 import MusicBar from '@/components/layout/MusicBar';
 import ThemeButton from './ThemeButton';
 import { media } from '@/styles/mediaQuery';
+import ArrowAnimation from '../modules/ArrowAnimation';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const FrameLayout = ({ children }: { children: ReactNode }) => {
   const [isCurrentSection, setIsCurrentSection] = useState<string>('intro');
+
   // 섹션 데이터
   const sections = [
     { menuName: 'INTRO', sectionName: 'main' },
@@ -45,16 +47,14 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
       <Header>
         <Marquee arrow={'left'} />
         <Nav className="global-layout">
+          {/* 좌측: 로고 & 다크모드 버튼 */}
           <LogoWrap>
             <Logo />
             <ThemeButton />
           </LogoWrap>
-          {/* 좌측: 로고 & 다크모드 버튼 */}
 
           {/* 중앙: 음악 바 */}
-          {/* <CenterWrapper> */}
           <MusicBar />
-          {/* </CenterWrapper> */}
 
           {/* 우측: 메뉴 */}
           <Menu>
@@ -86,6 +86,8 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
         </Info>
         <Marquee arrow={'right'} />
       </Footer>
+
+      {isCurrentSection === 'intro' && <ArrowAnimation />}
 
       <div className="bottom-effect" />
     </Layout>
@@ -163,7 +165,8 @@ const Logo = styled.div`
   width: 100%;
   height: 100%;
 
-  background-image: url('/images/logo.png');
+  /* background-image: url('/images/logo.png'); */
+  background-image: ${({ theme }) => `url(${theme.logo})`};
   background-size: contain;
 
   cursor: pointer;
