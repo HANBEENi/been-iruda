@@ -27,32 +27,32 @@ export const ShuffleSVG = () => (
     <path
       d="M16.75 10.25L18.9999 12.4999L16.75 14.7498"
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M16.75 1.25L18.9999 3.49989L16.75 5.74978"
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M1 12.5001H4.99337C5.61064 12.5001 6.21846 12.3477 6.76272 12.0564C7.30703 11.7651 7.77091 11.344 8.11345 10.8304L10.0002 8"
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M1 3.5H4.99337C5.61064 3.5 6.21846 3.65239 6.76272 3.94365C7.30703 4.23496 7.77091 4.6561 8.11345 5.16969L11.8869 10.8305C12.2295 11.344 12.6933 11.7652 13.2376 12.0565C13.7819 12.3478 14.3897 12.5002 15.007 12.5002H17.5004"
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M17.4989 3.5H15.0059C14.3886 3.5 13.7809 3.65235 13.2367 3.94361C12.6925 4.23487 12.2287 4.65593 11.8862 5.16952L11.4995 5.74972"
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
