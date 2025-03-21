@@ -163,3 +163,27 @@ export const ArrowDownSVG = (props: React.SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+/* 닫기아이콘 SVG */
+export const ExitSVG = () => (
+  <svg
+    width="10"
+    height="11"
+    viewBox="0 0 10 11"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9.34708 1L0.693237 10"
+      stroke="white"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M0.693237 1L9.34708 10"
+      stroke="white"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

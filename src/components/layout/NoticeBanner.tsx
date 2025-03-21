@@ -1,19 +1,23 @@
 import { styled } from 'styled-components';
+import { ExitSVG } from '../../../public/icons/SVG';
 
 const NoticeBanner = ({
   title,
   descript,
 }: {
   title: string;
-  descript: string;
+  descript?: string;
 }) => {
   return (
     <Layout>
       <Thumbnail />
       <Contents>
         <p className="title">{title}</p>
-        <p className="descript">{descript}</p>
+        {descript && <p className="descript">{descript}</p>}
       </Contents>
+      <ExitButton>
+        <ExitSVG />
+      </ExitButton>
     </Layout>
   );
 };
@@ -57,4 +61,26 @@ const Contents = styled.div`
   .descript {
     font-weight: 500;
   }
+`;
+
+const ExitButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: -5px;
+  left: -5px;
+
+  width: 20px;
+  height: 20px;
+
+  background: #8d8a87;
+  border-radius: 100%;
+
+  & svg {
+    width: 8px;
+  }
+
+  cursor: pointer;
 `;

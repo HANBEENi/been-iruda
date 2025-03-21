@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import SectionLayout from '../layout/SectionLayout';
 import Utterances from '@/hooks/Utterances';
 import { contactData } from '@/data/contactData';
+import NoticeBanner from '../layout/NoticeBanner';
 
 const Contact = () => {
   return (
@@ -35,6 +36,12 @@ const Contact = () => {
 
       {/* 3. 피드백 남기기 ----------------- */}
       <Wrap id="feedback-wrap">
+        <NoticeWrap>
+          <NoticeBanner
+            title="김한빈의 포트폴리오에 방문해주셔서 감사합니다"
+            descript=""
+          />
+        </NoticeWrap>
         <FeedbackWrap>
           <Title>
             <div className="thumbnail" />
@@ -60,7 +67,8 @@ const Wrap = styled.div`
   }
   &#feedback-wrap {
     display: flex;
-    justify-content: end;
+    justify-content: center;
+    position: relative;
   }
 `;
 
@@ -131,6 +139,7 @@ const Title = styled.div`
   align-items: center;
   justify-content: center;
   gap: 25px;
+  padding-top: 30px;
 
   width: 100%;
   height: 50%;
@@ -147,4 +156,12 @@ const Title = styled.div`
     background-image: url('/images/lp-cover-portfolio.png');
     background-size: contain;
   }
+`;
+const NoticeWrap = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+
+  width: 95%;
 `;
