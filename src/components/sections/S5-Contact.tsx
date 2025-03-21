@@ -2,55 +2,48 @@ import { styled } from 'styled-components';
 import SectionLayout from '../layout/SectionLayout';
 import Utterances from '@/hooks/Utterances';
 import { contactData } from '@/data/contactData';
-import NoticeBanner from '../layout/NoticeBanner';
+import NoticeBanner from '../ui/NoticeBanner';
 
 const Contact = () => {
   return (
-    <SectionLayout>
-      {/* 1. 섹션 태그 -------------------- */}
-      <Wrap id="section-tag-wrap">
-        <SectionTagWrap>
-          <span>CONTACT</span>
-          <span className="line" />
-        </SectionTagWrap>
-      </Wrap>
-
-      {/* 2. 컨택 정보 -------------------- */}
-      <Wrap id="contact-info-wrap">
-        <ContactWrap>
-          {contactData.map((i, idx) => (
-            <Form key={idx}>
-              <p className="title">{i.title}</p>
-              <a
-                href={i.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="content"
-              >
-                {i.content}
-              </a>
-            </Form>
-          ))}
-        </ContactWrap>
-      </Wrap>
-
-      {/* 3. 피드백 남기기 ----------------- */}
-      <Wrap id="feedback-wrap">
-        <NoticeWrap>
-          <NoticeBanner
-            title="김한빈의 포트폴리오에 방문해주셔서 감사합니다"
-            descript=""
-          />
-        </NoticeWrap>
-        <FeedbackWrap>
-          <Title>
-            <div className="thumbnail" />
-            <p>피드백 남기기</p>
-          </Title>
-          <Utterances />
-        </FeedbackWrap>
-      </Wrap>
-    </SectionLayout>
+    <SectionLayout
+      middleContents={
+        <Wrap id="contact-info-wrap">
+          <ContactWrap>
+            {contactData.map((i, idx) => (
+              <Form key={idx}>
+                <p className="title">{i.title}</p>
+                <a
+                  href={i.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="content"
+                >
+                  {i.content}
+                </a>
+              </Form>
+            ))}
+          </ContactWrap>
+        </Wrap>
+      }
+      rightContents={
+        <Wrap id="feedback-wrap">
+          <NoticeWrap>
+            <NoticeBanner
+              title="김한빈의 포트폴리오에 방문해주셔서 감사합니다"
+              descript=""
+            />
+          </NoticeWrap>
+          <FeedbackWrap>
+            <Title>
+              <div className="thumbnail" />
+              <p>피드백 남기기</p>
+            </Title>
+            <Utterances />
+          </FeedbackWrap>
+        </Wrap>
+      }
+    />
   );
 };
 export default Contact;

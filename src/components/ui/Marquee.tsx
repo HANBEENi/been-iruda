@@ -25,7 +25,7 @@ const MarqueeContainer = styled.div`
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
-  z-index: 1004;
+  z-index: 1005;
 
   width: 100%;
   height: 25px;

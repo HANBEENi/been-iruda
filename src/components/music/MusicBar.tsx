@@ -127,7 +127,6 @@ const MusicControlsLayout = styled.div`
   align-items: center;
   gap: 30px;
   padding-bottom: 5px;
-  z-index: 1006;
 
   height: 100%;
 
@@ -164,10 +163,10 @@ const MusicControlsLayout = styled.div`
 
 /** 컨트롤 버튼 */
 const MusicIcon = styled.div<{ $active?: boolean }>`
-  z-index: 1007;
   svg {
     color: ${({ theme }) => theme.musicBar.iconColor};
   }
+  z-index: 1005;
 
   cursor: pointer;
 `;

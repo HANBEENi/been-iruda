@@ -4,6 +4,7 @@
 /*
  * [TODO: 마우스 조작 돌아오기 및 모델 잘림 해결]
  * [TODO: 모델 사이즈 및 조명 조절(피그마 디자인과 맞추기)]
+ * 애니메이션 동작 추가
  */
 
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -16,7 +17,7 @@ import { media } from '@/styles/mediaQuery';
 /** [1]모델 뷰어 -------------------------------------------------------- */
 const Model3DViewer = () => {
   const model3DRef = useRef<HTMLDivElement | null>(null); // 3D 모델을 감쌀 div 요소 참조
-  const [scale, setScale] = useState<number>(1); // 3D 모델의 스케일
+  const [scale, setScale] = useState<number>(0.85); // 3D 모델의 스케일
   const MinScale = 1.8; // 최소 스케일 값
 
   return (
@@ -31,7 +32,7 @@ const Model3DViewer = () => {
         <Suspense>
           {/*카메라컨트롤설정 */}
           <OrbitControls
-            target={[-0.03, 0.005, 0]} // 모델 중심
+            target={[-0.02, 0.03, 0]} // 모델 중심
             maxDistance={10} // 최대 줌아웃 거리
             minDistance={2} // 최소 줌인 거리
             enableZoom={false} // 줌 비활성화
@@ -39,7 +40,7 @@ const Model3DViewer = () => {
             enablePan={false} // 이동 비활성화
           />
           {/*전체조명*/}
-          <ambientLight intensity={1} />
+          <ambientLight intensity={5} />
           {/*방향조명*/}
           <directionalLight position={[1, 1, 0.5]} intensity={5} />
           {/*3D모델불러오기*/}
@@ -89,15 +90,20 @@ const AnimatedModel = ({ scale }: { scale: number }) => {
 
 /** 스타일 -------------------------------------------------------------- */
 const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
   position: absolute;
-  top: 110px;
   left: 50%;
+  top: 0;
   transform: translate(-50%, 0);
+
+  border: 1px solid pink;
+  pointer-events: none;
 
   ${media.tablet} {
     top: 160px;

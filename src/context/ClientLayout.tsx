@@ -3,6 +3,7 @@
 import { ThemeContextProvider, useTheme } from '@/context/ThemeContext';
 import GlobalStyle from '@/styles/GlobalStyle';
 import StyledComponentsRegistry from '@/context/StyledComponentsRegistry';
+import { SectionProvider } from './SectionContext';
 
 export default function ClientLayout({
   children,
@@ -12,8 +13,10 @@ export default function ClientLayout({
   return (
     <StyledComponentsRegistry>
       <ThemeContextProvider>
-        <GlobalStyle />
-        {children}
+        <SectionProvider>
+          <GlobalStyle />
+          {children}
+        </SectionProvider>
       </ThemeContextProvider>
     </StyledComponentsRegistry>
   );

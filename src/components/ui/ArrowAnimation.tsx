@@ -52,6 +52,8 @@ const ArrowContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1005;
+
   position: absolute;
   bottom: 0px;
   left: 50%;

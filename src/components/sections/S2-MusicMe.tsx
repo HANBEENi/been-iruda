@@ -9,12 +9,12 @@
 
 import { styled } from 'styled-components';
 import SectionLayout from '../layout/SectionLayout';
-import { MusicControls } from '../layout/MusicBar';
-import MusicLyricsView from '../layout/MusicLyricsView';
+import { MusicControls } from '../music/MusicBar';
+import MusicLyricsView from '../music/MusicLyricsView';
 import { musicList } from '@/data/musicData';
 import { useMusic } from '@/context/MusicContext';
-import MusicTimeLine from '../layout/MusicTimeLine';
-import NoticeBanner from '../layout/NoticeBanner';
+import MusicTimeLine from '../music/MusicTimeLine';
+import NoticeBanner from '../ui/NoticeBanner';
 import { noticeList } from '@/data/noticeData';
 
 const MusicMe = () => {
@@ -22,17 +22,8 @@ const MusicMe = () => {
   const currentTrack = musicList[currentTrackIndex];
 
   return (
-    <SectionLayout>
-      {/* 1. 섹션 태그 -------------------- */}
-      <Wrap id="section-tag-wrap">
-        <SectionTagWrap>
-          <span>MUSIC ME</span>
-          <span className="line" />
-        </SectionTagWrap>
-      </Wrap>
-
-      {/* 2. 뮤직 플레이 ------------------- */}
-      <Wrap id="music-play-wrap">
+    <SectionLayout
+      middleContents={
         <MusicPlayWrap>
           <div className="title-wrap">
             <Thumbnail $thumbnail={currentTrack.thumbnail}>
@@ -54,17 +45,17 @@ const MusicMe = () => {
             <MusicLyricsView />
           </Lyrics>
         </MusicPlayWrap>
-      </Wrap>
-
-      {/* 3. 알림 목록 -------------------- */}
-      <Wrap id="alert-list-wrap">
-        <AlertListWrap>
-          {noticeList.map((i, idx) => (
-            <NoticeBanner key={idx} title={i.title} descript={i.descript} />
-          ))}
-        </AlertListWrap>
-      </Wrap>
-    </SectionLayout>
+      }
+      rightContents={
+        <Wrap id="alert-list-wrap">
+          <AlertListWrap>
+            {noticeList.map((i, idx) => (
+              <NoticeBanner key={idx} title={i.title} descript={i.descript} />
+            ))}
+          </AlertListWrap>
+        </Wrap>
+      }
+    />
   );
 };
 export default MusicMe;
@@ -72,35 +63,13 @@ export default MusicMe;
 /* 그리드랩 ------------------------------------------------------- */
 const Wrap = styled.div`
   display: flex;
-  flex: 1;
+
+  width: 100%;
   height: 100%;
-
-  &#section-tag-wrap {
-  }
-
-  &#music-play-wrap {
-    display: flex;
-    justify-content: center;
-  }
 
   &#alert-list-wrap {
     display: flex;
     justify-content: end;
-  }
-`;
-
-/* 섹션태그 ------------------------------------------------------- */
-const SectionTagWrap = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  height: 100%;
-
-  .line {
-    width: 298px;
-    height: 0;
-    border: 1px solid ${({ theme }) => theme.color};
   }
 `;
 
