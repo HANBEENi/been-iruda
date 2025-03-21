@@ -15,6 +15,34 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
   }
 
+  @font-face {
+    font-family: 'GmarketSans';
+    src: url('/fonts/GmarketSansLight.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'GmarketSans';
+    src: url('/fonts/GmarketSansMedium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'GmarketSans';
+    src: url('/fonts/GmarketSansBold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'RockSalt';
+    src: url('/fonts/RockSalt-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   /* 📌 전역 스타일 */
   html,body {
     background: ${({ theme }) => theme.background};
@@ -24,18 +52,21 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     overflow:hidden;
 
+    font-family: 'GmarketSans', sans-serif;
+    font-weight: 500;
+
   /* ✅ 크롬, 사파리, 엣지에서 스크롤바 숨기기 */
   ::-webkit-scrollbar {
     display: none;
   }
-
   /* ✅ 파이어폭스에서 스크롤바 숨기기 */
   html {
     scrollbar-width: none;
   }
   }
+  /* ✅ Chrome, Safari에서 스크롤바 숨기기 */
   body::-webkit-scrollbar {
-    display: none; /* ✅ Chrome, Safari에서 스크롤바 숨기기 */
+    display: none; 
   }
 
   /* 📌 리스트 기본 스타일 제거 */
