@@ -15,11 +15,14 @@ gsap.registerPlugin(ScrollToPlugin);
 
 const Header = () => {
   const { currentSection } = useSection();
+
   /** 섹션 스크롤 이동 */
   const scrollToSection = (id: string) => {
     const target = document.getElementById(id);
-    if (!target) return;
-    gsap.to(window, {
+    const scrollElement = document.getElementById('main-scroll-container');
+    if (!target || !scrollElement) return;
+
+    gsap.to(scrollElement, {
       scrollTo: {
         y: target.offsetTop,
         autoKill: false,

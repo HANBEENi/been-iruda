@@ -43,8 +43,8 @@ export default function Home() {
 
   return (
     <>
-      <FrameLayout scrollRef={scrollRef} />
-      <PageLayout ref={scrollRef}>
+      <FrameLayout />
+      <PageLayout id="main-scroll-container" ref={scrollRef}>
         <Section id="intro" className="section">
           <Intro />
         </Section>

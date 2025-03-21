@@ -16,11 +16,7 @@ import Footer from './Footer';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-const FrameLayout = ({
-  scrollRef,
-}: {
-  scrollRef: React.RefObject<HTMLElement>;
-}) => {
+const FrameLayout = () => {
   return (
     <Layout>
       <Header />
