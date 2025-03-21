@@ -31,7 +31,7 @@ const Layout = styled.div`
   border-radius: 20px;
   background: rgba(112, 110, 107, 0.6);
 
-  color: #555555;
+  color: ${({ theme }) => theme.noticeBanner.color};
   font-size: 15px;
 `;
 

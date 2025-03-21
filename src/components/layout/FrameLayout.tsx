@@ -18,6 +18,7 @@ import MusicBar from '@/components/layout/MusicBar';
 import ThemeButton from './ThemeButton';
 import ArrowAnimation from '../modules/ArrowAnimation';
 import CurrentMusic from './CurrentMusic';
+import { theme } from '@/styles/themes';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -176,7 +177,7 @@ const FrameLayout = ({ children }: { children: ReactNode }) => {
           <span style={{ color: '#9A9A9A' }}>
             © 2024. KIM HANBEEN All Rights Reserved
           </span>
-          <span style={{ color: '#FF6297' }}>been.iruda@gmail.com</span>
+          <span>been.iruda@gmail.com</span>
         </Info>
         <Marquee $arrow={'right'} />
       </Footer>
@@ -327,6 +328,10 @@ const Info = styled.div`
 
   font-size: 13px;
   font-weight: medium;
+
+  :nth-child(2) {
+    color: ${({ theme }) => theme.color};
+  }
 `;
 
 const LpRecode = styled.div`

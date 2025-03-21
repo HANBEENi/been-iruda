@@ -16,7 +16,7 @@ const Layout = styled.div<{ $paddingTop: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: ${({ $paddingTop }) => `${paddingTop}px`};
+  padding-top: ${({ $paddingTop }) => `${$paddingTop}px`};
   width: 100%;
   height: calc(100vh - 77px - 77px);
 `;
