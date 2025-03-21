@@ -6,7 +6,7 @@
  */
 
 import { useMusic } from '@/context/MusicContext';
-import { musicList } from '@/utils/musicData';
+import { musicList } from '@/data/musicData';
 import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 

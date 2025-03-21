@@ -3,15 +3,19 @@
 /**
  * [TODO]
  * - 음악플레이 썸네일 피그마 디자인 반영(슬라이드넘기기 모션)
+ * - 음악 재생될 때 레코드 회전시키기
+ * - 셔플, 반복 버튼 동작 적용하기
  */
 
 import { styled } from 'styled-components';
 import SectionLayout from '../layout/SectionLayout';
 import { MusicControls } from '../layout/MusicBar';
 import MusicLyricsView from '../layout/MusicLyricsView';
-import { musicList } from '@/utils/musicData';
+import { musicList } from '@/data/musicData';
 import { useMusic } from '@/context/MusicContext';
 import MusicTimeLine from '../layout/MusicTimeLine';
+import NoticeBanner from '../layout/NoticeBanner';
+import { noticeList } from '@/data/noticeData';
 
 const MusicMe = () => {
   const { currentTrackIndex } = useMusic();
@@ -54,7 +58,11 @@ const MusicMe = () => {
 
       {/* 3. 알림 목록 -------------------- */}
       <Wrap id="alert-list-wrap">
-        <AlertListWrap></AlertListWrap>
+        <AlertListWrap>
+          {noticeList.map((i, idx) => (
+            <NoticeBanner key={idx} title={i.title} descript={i.descript} />
+          ))}
+        </AlertListWrap>
       </Wrap>
     </SectionLayout>
   );
@@ -76,6 +84,8 @@ const Wrap = styled.div`
   }
 
   &#alert-list-wrap {
+    display: flex;
+    justify-content: end;
   }
 `;
 
@@ -90,7 +100,7 @@ const SectionTagWrap = styled.div`
   .line {
     width: 298px;
     height: 0;
-    border: 1px solid #000;
+    border: 1px solid ${({ theme }) => theme.color};
   }
 `;
 
@@ -162,4 +172,10 @@ const Lyrics = styled.div`
 `;
 
 /* 알림목록 ------------------------------------------------------- */
-const AlertListWrap = styled.div``;
+const AlertListWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 90%;
+`;

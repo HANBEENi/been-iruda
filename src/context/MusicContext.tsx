@@ -3,7 +3,7 @@
 /* 전역 음악 재생 정보 */
 
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
-import { musicList } from '@/utils/musicData';
+import { musicList } from '@/data/musicData';
 
 interface MusicContextProps {
   audioRef: React.RefObject<HTMLAudioElement>;
