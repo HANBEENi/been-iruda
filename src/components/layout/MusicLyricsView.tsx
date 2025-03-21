@@ -125,7 +125,7 @@ const Layout = styled.div`
 
 const LyricLine = styled.p<{ $isActive: boolean }>`
   font-size: 16px;
-  font-weight: ${({ $isActive }) => ($isActive ? 'bold' : 'normal')};
+  font-weight: ${({ $isActive }) => ($isActive ? '500' : '300')};
   color: ${({ $isActive }) => ($isActive ? '#fff' : '#858585')};
   transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
 `;

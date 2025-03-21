@@ -30,13 +30,16 @@ const MusicMe = () => {
       {/* 2. 뮤직 플레이 ------------------- */}
       <Wrap id="music-play-wrap">
         <MusicPlayWrap>
-          <Thumbnail $thumbnail={currentTrack.thumbnail}>
-            <div className="thumbnail" />
-          </Thumbnail>
-          <Title>
-            <span>{currentTrack.title}</span>
-            <span>Made With Suno</span>
-          </Title>
+          <div className="title-wrap">
+            <Thumbnail $thumbnail={currentTrack.thumbnail}>
+              <div className="thumbnail" />
+            </Thumbnail>
+            <Title>
+              <span>{currentTrack.title}</span>
+              <span>Made With Suno</span>
+            </Title>
+          </div>
+
           <MusicControlsWrap>
             <MusicTimeLine />
             <div className="music-controls">
@@ -63,7 +66,6 @@ const Wrap = styled.div`
   display: flex;
   flex: 1;
   height: 100%;
-  border: 1px solid red;
 
   &#section-tag-wrap {
   }
@@ -98,7 +100,7 @@ const MusicPlayWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  gap: 30px;
+  gap: 25px;
   padding: 30px 0;
 
   width: 350px;
@@ -106,6 +108,13 @@ const MusicPlayWrap = styled.div`
 
   background: rgba(0, 0, 0, 0.37);
   border-radius: 20px;
+
+  & .title-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 `;
 
 const Thumbnail = styled.div<{ $thumbnail: string }>`
@@ -116,9 +125,11 @@ const Thumbnail = styled.div<{ $thumbnail: string }>`
   border: 1.5px solid #fff;
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
 
+  width: fit-content;
+
   .thumbnail {
-    height: 110px;
     aspect-ratio: 833/826;
+    height: 110px;
 
     background-image: ${({ $thumbnail }) => `url(${$thumbnail})`};
     background-size: contain;
@@ -132,7 +143,7 @@ const Title = styled.div`
   color: #fff;
 
   :nth-child(1) {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
   }
   :nth-child(2) {
@@ -142,7 +153,7 @@ const Title = styled.div`
 `;
 const MusicControlsWrap = styled.div`
   & .music-controls {
-    height: 60px;
+    height: 57px;
   }
 `;
 const Lyrics = styled.div`
