@@ -1,11 +1,11 @@
 /* 깃헙 댓글 Utterances */
 
 import { useEffect, useRef } from 'react';
-import { styled, useTheme } from 'styled-components';
-
+import { styled } from 'styled-components';
+import { useTheme } from '@/context/ThemeContext';
 const Utterances = () => {
   const commentsRef = useRef<HTMLDivElement>(null);
-  const theme = useTheme();
+  const { themeMode } = useTheme();
 
   useEffect(() => {
     if (!commentsRef.current) return;
@@ -18,13 +18,13 @@ const Utterances = () => {
     script.setAttribute('issue-term', 'pathname'); // 페이지별 댓글 구분 방식
     script.setAttribute(
       'theme',
-      theme.mode === 'dark' ? 'github-dark' : 'github-light'
+      themeMode === 'dark' ? 'github-dark' : 'github-light'
     ); // 테마 설정
     script.setAttribute('crossorigin', 'anonymous');
     script.async = true;
 
     commentsRef.current.appendChild(script);
-  }, [theme]);
+  }, [themeMode]);
 
   return (
     <Layout>
