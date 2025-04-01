@@ -93,7 +93,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0 70px;
 
     ${media.tablet()} {
-      padding: 0 70px;
+      padding: 0 40px;
     }
   
     ${media.mobile()} {

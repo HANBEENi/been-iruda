@@ -1,15 +1,19 @@
 /* 섹션 공용 레이아웃 */
 
+import { useSection } from '@/context/SectionContext';
+import { media } from '@/styles/mediaQuery';
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
 interface Props {
-  middleContents: ReactNode;
+  middleContents?: ReactNode;
   rightContents?: ReactNode;
+  children?: ReactNode;
 }
 
-const SectionLayout = ({ middleContents, rightContents }: Props) => {
-  const paddingTop = 50;
+const SectionLayout = ({ middleContents, rightContents, children }: Props) => {
+  const paddingTop = 20;
+  const { currentSection } = useSection();
 
   return (
     <Layout $paddingTop={paddingTop} className="global-layout">
@@ -22,13 +26,18 @@ const SectionLayout = ({ middleContents, rightContents }: Props) => {
       </Wrap>
 
       {/* 2. Middle Contents ------------------- */}
-      <Wrap>{middleContents}</Wrap>
+      <Wrap id="middle-content-wrap">{middleContents}</Wrap>
 
       {/* 3. Right Contents -------------------- */}
       <Wrap>{rightContents}</Wrap>
 
+      {/* [fixed] 레코드, 레코드바늘 */}
       <LpRecode />
-      <LpStylus />
+      {(currentSection === 'musicMe' || currentSection === 'contact') && (
+        <LpStylus />
+      )}
+
+      {children}
     </Layout>
   );
 };
@@ -41,6 +50,7 @@ const Layout = styled.div<{ $paddingTop: number }>`
   align-items: center;
   justify-content: center;
   padding-top: ${({ $paddingTop }) => `${$paddingTop}px`};
+  position: relative;
 
   width: 100%;
   height: calc(100vh - 77px - 77px);
@@ -50,6 +60,21 @@ const Layout = styled.div<{ $paddingTop: number }>`
     align-items: center;
 
     height: 100%;
+
+    ${media.tablet} {
+      display: none;
+    }
+    ${media.mobile} {
+      display: none;
+    }
+  }
+  #middle-content-wrap {
+    display: flex;
+    padding-top: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: fit-content;
   }
 `;
 
@@ -77,14 +102,13 @@ const SectionTag = styled.div`
 
 const LpRecode = styled.div`
   position: fixed;
-  top: 50%;
   left: 50%;
-  transform: translate(-50.2%, -50%);
-  margin-top: 25px;
-  z-index: 1;
+  bottom: 77px; //Footer높이만큼
+  transform: translate(-50.2%, 0);
+  margin-top: 20px;
 
-  width: 100%;
-  height: calc(100% - 77px - 77px - 55px); //상위paddingTop만큼
+  aspect-ratio: 1/1;
+  height: calc(100vh - 77px - 77px - 20px); //상위paddingTop만큼
 
   background-image: url('/images/lp-recode.png');
   background-size: contain;

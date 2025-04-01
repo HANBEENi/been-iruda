@@ -16,10 +16,14 @@ import Footer from './Footer';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-const FrameLayout = () => {
+const FrameLayout = ({
+  scrollToSection,
+}: {
+  scrollToSection: (id: string) => void;
+}) => {
   return (
     <Layout>
-      <Header />
+      <Header scrollToSection={scrollToSection} />
       <CurrentMusic />
       <Footer />
     </Layout>

@@ -16,21 +16,67 @@ import { useSection } from '@/context/SectionContext';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+const isAnimatingRef = { current: false };
+
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const { setCurrentSection } = useSection();
 
   useEffect(() => {
-    const sections = scrollRef.current?.querySelectorAll('.section') ?? [];
+    const scrollEl = scrollRef.current;
+    const sections = scrollEl?.querySelectorAll('.section') ?? [];
+    const TOLERANCE = 10;
 
     sections.forEach((section) => {
       ScrollTrigger.create({
         trigger: section,
-        start: 'top center',
-        end: 'bottom center',
-        scroller: scrollRef.current,
-        onEnter: () => setCurrentSection(section.id),
-        onEnterBack: () => setCurrentSection(section.id),
+        start: 'top 90%',
+        end: 'bottom 10%',
+        scroller: scrollEl,
+        onEnter: () => {
+          const scrollTop = scrollEl?.scrollTop ?? 0;
+          const targetTop = (section as HTMLElement).offsetTop;
+
+          // 너무 많이 차이나면 이동
+          if (
+            Math.abs(scrollTop - targetTop) > TOLERANCE &&
+            !isAnimatingRef.current
+          ) {
+            isAnimatingRef.current = true;
+            setCurrentSection(section.id);
+
+            gsap.to(scrollEl, {
+              scrollTo: { y: targetTop },
+              duration: 1,
+              ease: 'power2.out',
+              onComplete: () => {
+                isAnimatingRef.current = false;
+              },
+            });
+          }
+        },
+        onEnterBack: () => {
+          const scrollTop = scrollEl?.scrollTop ?? 0;
+          const targetTop = (section as HTMLElement).offsetTop;
+
+          // 너무 많이 차이나면 이동
+          if (
+            Math.abs(scrollTop - targetTop) > TOLERANCE &&
+            !isAnimatingRef.current
+          ) {
+            isAnimatingRef.current = true;
+            setCurrentSection(section.id);
+
+            gsap.to(scrollEl, {
+              scrollTo: { y: targetTop },
+              duration: 1,
+              ease: 'power2.out',
+              onComplete: () => {
+                isAnimatingRef.current = false;
+              },
+            });
+          }
+        },
       });
     });
 
@@ -41,9 +87,29 @@ export default function Home() {
     };
   }, [setCurrentSection]);
 
+  const scrollToSection = (id: string) => {
+    const target = document.getElementById(id);
+    setCurrentSection(id);
+    const scrollElement = scrollRef.current;
+    if (!target || !scrollElement) return;
+
+    isAnimatingRef.current = true;
+    gsap.to(scrollElement, {
+      scrollTo: {
+        y: target.offsetTop,
+        autoKill: false,
+      },
+      duration: 1,
+      ease: 'power2.out',
+      onComplete: () => {
+        isAnimatingRef.current = false;
+      },
+    });
+  };
+
   return (
     <>
-      <FrameLayout />
+      <FrameLayout scrollToSection={scrollToSection} />
       <PageLayout id="main-scroll-container" ref={scrollRef}>
         <Section id="intro" className="section">
           <Intro />

@@ -35,7 +35,7 @@ const Layout = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  z-index: 1005;
+  z-index: 1006;
 
   position: absolute;
   bottom: calc(77px);

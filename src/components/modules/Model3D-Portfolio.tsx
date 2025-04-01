@@ -5,6 +5,7 @@
  * [TODO: 마우스 조작 돌아오기 및 모델 잘림 해결]
  * [TODO: 모델 사이즈 및 조명 조절(피그마 디자인과 맞추기)]
  * 애니메이션 동작 추가
+ * 다크모드시 조명 올리기
  */
 
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -40,7 +41,7 @@ const Model3DViewer = () => {
             enablePan={false} // 이동 비활성화
           />
           {/*전체조명*/}
-          <ambientLight intensity={5} />
+          <ambientLight intensity={2} />
           {/*방향조명*/}
           <directionalLight position={[1, 1, 0.5]} intensity={5} />
           {/*3D모델불러오기*/}
@@ -102,7 +103,6 @@ const Wrapper = styled.div`
   top: 0;
   transform: translate(-50%, 0);
 
-  border: 1px solid pink;
   pointer-events: none;
 
   ${media.tablet} {

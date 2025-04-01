@@ -13,24 +13,16 @@ import { useSection } from '@/context/SectionContext';
 
 gsap.registerPlugin(ScrollToPlugin);
 
-const Header = () => {
+const Header = ({
+  scrollToSection,
+}: {
+  scrollToSection: (id: string) => void;
+}) => {
   const { currentSection } = useSection();
 
-  /** 섹션 스크롤 이동 */
-  const scrollToSection = (id: string) => {
-    const target = document.getElementById(id);
-    const scrollElement = document.getElementById('main-scroll-container');
-    if (!target || !scrollElement) return;
-
-    gsap.to(scrollElement, {
-      scrollTo: {
-        y: target.offsetTop,
-        autoKill: false,
-      },
-      duration: 1,
-      ease: 'power2.out',
-    });
-  };
+  useEffect(() => {
+    console.log('currentSection: ', currentSection);
+  }, [currentSection]);
 
   return (
     <Layout>

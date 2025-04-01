@@ -16,6 +16,7 @@ import { useMusic } from '@/context/MusicContext';
 import MusicTimeLine from '../music/MusicTimeLine';
 import NoticeBanner from '../ui/NoticeBanner';
 import { noticeList } from '@/data/noticeData';
+import { media } from '@/styles/mediaQuery';
 
 const MusicMe = () => {
   const { currentTrackIndex } = useMusic();
@@ -46,16 +47,16 @@ const MusicMe = () => {
           </Lyrics>
         </MusicPlayWrap>
       }
-      rightContents={
-        <Wrap id="alert-list-wrap">
-          <AlertListWrap>
-            {noticeList.map((i, idx) => (
-              <NoticeBanner key={idx} title={i.title} descript={i.descript} />
-            ))}
-          </AlertListWrap>
-        </Wrap>
-      }
-    />
+    >
+      <Wrap id="alert-list-wrap">
+        <AlertListWrap>
+          {noticeList.map((i, idx) => (
+            <NoticeBanner key={idx} title={i.title} descript={i.descript} />
+          ))}
+        </AlertListWrap>
+      </Wrap>
+      <Background></Background>
+    </SectionLayout>
   );
 };
 export default MusicMe;
@@ -70,6 +71,17 @@ const Wrap = styled.div`
   &#alert-list-wrap {
     display: flex;
     justify-content: end;
+    position: absolute;
+    top: 20px;
+    right: 70px;
+
+    max-width: 450px;
+    z-index: 1004;
+
+    ${media.mobile} {
+      right: 50%;
+      transform: translate(50%, 0);
+    }
   }
 `;
 
@@ -146,5 +158,25 @@ const AlertListWrap = styled.div`
   flex-direction: column;
   gap: 10px;
 
-  width: 90%;
+  width: 100%;
+`;
+
+const Background = styled.div`
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1003;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: #ffffffe3;
+
+  ${media.tablet} {
+    display: flex;
+  }
+  ${media.mobile} {
+    display: flex;
+  }
 `;
