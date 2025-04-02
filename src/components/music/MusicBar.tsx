@@ -166,7 +166,7 @@ const MusicIcon = styled.div<{ $active?: boolean }>`
   svg {
     color: ${({ theme }) => theme.musicBar.iconColor};
   }
-  z-index: 1005;
+  z-index: 1003;
 
   cursor: pointer;
 `;

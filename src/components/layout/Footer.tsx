@@ -20,7 +20,6 @@ export default Footer;
 const Layout = styled.div`
   display: flex;
   flex-direction: column;
-  z-index: 1005;
 
   height: 77px;
   .bottom-effect {
@@ -28,6 +27,7 @@ const Layout = styled.div`
     bottom: 0;
     width: 100%;
     height: 200px;
+    z-index: 1005;
 
     background: linear-gradient(
       180deg,
@@ -40,6 +40,7 @@ const Info = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1003;
 
   flex: 1;
 
