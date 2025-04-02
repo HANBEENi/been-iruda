@@ -182,6 +182,10 @@ const Menu = styled.ul`
     ${media.tablet} {
       display: flex;
     }
+
+    svg {
+      fill: ${({ theme }) => theme.color};
+    }
   }
 `;
 
