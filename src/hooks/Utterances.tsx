@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 import { useTheme } from '@/context/ThemeContext';
+import { media } from '@/styles/mediaQuery';
 
 const Utterances = () => {
   const commentsRef = useRef<HTMLDivElement>(null);

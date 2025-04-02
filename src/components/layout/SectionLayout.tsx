@@ -104,11 +104,18 @@ const LpRecode = styled.div`
   position: fixed;
   left: 50%;
   bottom: 77px; //Footer높이만큼
-  transform: translate(-50.2%, 0);
+  transform: translate(-51%, 0);
   margin-top: 20px;
 
   aspect-ratio: 1/1;
   height: calc(100vh - 77px - 77px - 20px); //상위paddingTop만큼
+
+  ${media.mobile} {
+    top: 50%;
+    transform: translate(-50.2%, -52.93%);
+
+    height: 340px;
+  }
 
   background-image: url('/images/lp-recode.png');
   background-size: contain;

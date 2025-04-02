@@ -3,6 +3,7 @@ import SectionLayout from '../layout/SectionLayout';
 import Utterances from '@/hooks/Utterances';
 import { contactData } from '@/data/contactData';
 import NoticeBanner from '../ui/NoticeBanner';
+import { media } from '@/styles/mediaQuery';
 
 const Contact = () => {
   return (
@@ -28,12 +29,6 @@ const Contact = () => {
       }
       rightContents={
         <Wrap id="feedback-wrap">
-          <NoticeWrap>
-            <NoticeBanner
-              title="김한빈의 포트폴리오에 방문해주셔서 감사합니다"
-              descript=""
-            />
-          </NoticeWrap>
           <FeedbackWrap>
             <Title>
               <div className="thumbnail" />
@@ -43,7 +38,14 @@ const Contact = () => {
           </FeedbackWrap>
         </Wrap>
       }
-    />
+    >
+      <NoticeWrap>
+        <NoticeBanner
+          title="김한빈의 포트폴리오에 방문해주셔서 감사합니다"
+          descript=""
+        />
+      </NoticeWrap>
+    </SectionLayout>
   );
 };
 export default Contact;
@@ -120,11 +122,17 @@ const FeedbackWrap = styled.div`
   width: 350px;
   height: 100%;
 
-  /* background: ${({ theme }) => theme.background}; */
   background: ${({ theme }) => theme.marquee.color};
   border-radius: 20px;
 
   overflow: hidden;
+
+  ${media.mobile} {
+    display: none;
+  }
+  ${media.tablet} {
+    display: none;
+  }
 `;
 const Title = styled.div`
   display: flex;
@@ -152,9 +160,16 @@ const Title = styled.div`
 `;
 const NoticeWrap = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 20px;
+  right: 70px;
   z-index: 3;
 
-  width: 95%;
+  width: 400px;
+
+  ${media.tablet} {
+    display: none;
+  }
+  ${media.mobile} {
+    display: none;
+  }
 `;

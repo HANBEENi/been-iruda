@@ -8,6 +8,7 @@
 import { styled } from 'styled-components';
 import { GitHubSVG } from '../../../public/icons/TechSkillsSVG';
 import { TeamSVG } from '../../../public/icons/SVG';
+import { media } from '@/styles/mediaQuery';
 
 const ProjectsLpContentsLayout = () => {
   const skills = [
@@ -85,9 +86,15 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 25px 25px;
   padding-top: 35px;
   white-space: nowrap;
+
+  ${media.mobile} {
+    padding: 15px 20px;
+    padding-top: 20px;
+  }
 
   width: 100%;
   height: 100%;
@@ -96,7 +103,10 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 27px;
+
+  ${media.mobile} {
+    gap: 10px;
+  }
 
   width: 100%;
   height: 100%;
@@ -106,6 +116,10 @@ const Top = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+
+  ${media.mobile} {
+    gap: 10px;
+  }
 
   width: 100%;
 `;
@@ -131,6 +145,10 @@ const TitleWrap = styled.div`
     height: 100%;
 
     font-size: 12px;
+
+    ${media.mobile} {
+      display: none;
+    }
   }
 `;
 const Thumbnail = styled.div`
@@ -138,6 +156,10 @@ const Thumbnail = styled.div`
 
   height: 65px;
   aspect-ratio: 1/1;
+
+  ${media.mobile} {
+    height: 55px;
+  }
 
   background-image: url('/images/profile-portfolio.png');
   background-size: cover;
@@ -147,8 +169,12 @@ const Thumbnail = styled.div`
 const Title = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+
   width: 100%;
+  height: 100%;
+
+  color: #000;
 
   :nth-child(1) {
     font-size: 15px;
@@ -177,19 +203,35 @@ const Links = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+
+    svg {
+      ${media.mobile} {
+        width: 15px;
+      }
+    }
   }
   :nth-child(2) {
+    color: #fff;
     span {
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 7px 15px;
+
+      ${media.mobile} {
+        padding: 4px 10px;
+      }
       white-space: nowrap;
 
       height: fit-content;
 
       border-radius: 30px;
       background: #1e92ff;
+    }
+    svg {
+      ${media.mobile} {
+        width: 25px;
+      }
     }
   }
 `;
@@ -224,7 +266,11 @@ const SkillSet = styled.div`
   }
 `;
 
-const Middle = styled.div``;
+const Middle = styled.div`
+  ${media.mobile} {
+    display: none;
+  }
+`;
 
 const Bottom = styled.div`
   display: flex;
@@ -243,5 +289,12 @@ const Bottom = styled.div`
     background: #000;
     color: #fff;
     font-size: 12px;
+
+    ${media.mobile} {
+      padding: 0;
+      background: none;
+      color: #000;
+      font-size: 10px;
+    }
   }
 `;

@@ -62,7 +62,7 @@ const Layout = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 5px;
+  gap: 10px;
 
   span {
     font-size: 10px;

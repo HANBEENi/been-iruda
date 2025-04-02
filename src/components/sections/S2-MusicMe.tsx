@@ -91,7 +91,7 @@ const MusicPlayWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  gap: 25px;
+  gap: 20px;
   padding: 30px 0;
 
   width: 350px;
@@ -104,7 +104,7 @@ const MusicPlayWrap = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
   }
 `;
 
@@ -143,6 +143,10 @@ const Title = styled.div`
   }
 `;
 const MusicControlsWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
   & .music-controls {
     height: 57px;
   }

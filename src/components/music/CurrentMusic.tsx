@@ -5,6 +5,7 @@
  * Layout left값 -> 메인레이아웃padding값 반응형에 맞춰서 적용해야함
  * 가사보기 디자인 작업 필요(항상 표시해야하는지도 고민 필요)
  */
+import { media } from '@/styles/mediaQuery';
 import { useState } from 'react';
 import { styled } from 'styled-components';
 
@@ -42,6 +43,13 @@ const Layout = styled.div`
   left: 70px;
 
   cursor: pointer;
+
+  ${media.tablet} {
+    display: none;
+  }
+  ${media.mobile} {
+    display: none;
+  }
 `;
 
 const Cover = styled.div`

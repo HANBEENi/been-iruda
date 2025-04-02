@@ -36,15 +36,9 @@ const Wrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 20px;
+  position: relative;
+  padding-top: 25px;
 
   width: 100%;
-  height: calc(100vh - 77px - 77px);
-
-  #section-tag-wrap {
-    display: flex;
-    align-items: center;
-
-    height: 100%;
-  }
+  height: calc(100vh - 77px - 77px - 25px);
 `;
