@@ -37,8 +37,8 @@ const Wrap = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding-top: 25px;
+  padding-top: 35px;
 
   width: 100%;
-  height: calc(100vh - 77px - 77px - 25px);
+  height: calc(100vh - 77px - 77px - 4px);
 `;

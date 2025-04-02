@@ -26,8 +26,9 @@ export default LpCoverLayout;
 const Layout = styled.div<{ $backgroundImage: string; $themeMode: string }>`
   display: flex;
   position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, calc(-50% + 18px));
 
   width: fit-content;
   height: 100%;
