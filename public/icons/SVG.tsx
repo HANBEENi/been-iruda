@@ -175,13 +175,13 @@ export const ExitSVG = () => (
   >
     <path
       d="M9.34708 1L0.693237 10"
-      stroke="white"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
       d="M0.693237 1L9.34708 10"
-      stroke="white"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
