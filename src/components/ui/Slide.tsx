@@ -1,35 +1,24 @@
 'use client';
 
-import { media } from '@/styles/mediaQuery';
-/* 앨범 슬라이더 - PROJECTS,SKILLS 섹션에서 사용 */
-
-/*
- * TODO:
- * - 슬라이더 스크롤 멈추면서 슬라이드가 가운데 자동으로 오도록 재정렬 이동
- */
-
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { media } from '@/styles/mediaQuery';
 
-const albumCovers = [
-  '/images/lp-cover-effectsspace.png',
-  '/images/lp-cover-photeto.png',
-  '/images/lp-cover-intermatch.png',
-  '/images/lp-cover-portfolio.png',
-  '/images/lp-cover-tinichat.png',
-]; // 앨범 이미지 배열
+interface Props {
+  albumCovers: string[];
+  currentIndex: number;
+  onClick: (index: number) => void;
+}
 
-const VerticalScrollAlbums = () => {
+const Slide = ({ albumCovers, currentIndex, onClick }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const centerRef = useRef<HTMLDivElement>(null); // ✅ 중앙 기준점 ref
-  const [centerIndex, setCenterIndex] = useState(0);
+  const centerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
       if (!containerRef.current || !centerRef.current) return;
 
       const centerY = centerRef.current.getBoundingClientRect().top;
-
       const items = containerRef.current.querySelectorAll('.album');
 
       let closestIndex = 0;
@@ -45,13 +34,11 @@ const VerticalScrollAlbums = () => {
           closestIndex = index;
         }
       });
-
-      setCenterIndex(closestIndex);
     };
 
     const container = containerRef.current;
     container?.addEventListener('scroll', onScroll);
-    onScroll(); // 초기 실행
+    onScroll();
 
     return () => container?.removeEventListener('scroll', onScroll);
   }, []);
@@ -60,11 +47,12 @@ const VerticalScrollAlbums = () => {
     <Wrapper>
       <CenterGuide ref={centerRef} />
       <ScrollWrapper ref={containerRef}>
-        {albumCovers.map((src, index) => (
+        {albumCovers?.map((src, index) => (
           <AlbumItem
             key={index}
             className="album"
-            $active={index === centerIndex}
+            $active={index === currentIndex}
+            onClick={() => onClick(index)}
           >
             <img src={src} alt={`album-${index}`} />
           </AlbumItem>
@@ -74,13 +62,12 @@ const VerticalScrollAlbums = () => {
   );
 };
 
-export default VerticalScrollAlbums;
+export default Slide;
 
 const Wrapper = styled.div`
   position: absolute;
   z-index: 1004;
   right: 70px;
-
   width: fit-content;
   height: 100%;
 
@@ -97,7 +84,6 @@ const ScrollWrapper = styled.div`
   overflow-y: scroll;
   scroll-behavior: smooth;
   padding: 200px 0;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,12 +101,12 @@ const CenterGuide = styled.div`
 
 const AlbumItem = styled.div<{ $active: boolean }>`
   height: 150px;
-  aspect-ratio: 51/50;
+  aspect-ratio: 51 / 50;
   transition: transform 0.4s ease, opacity 0.4s ease;
-
   transform: scale(${({ $active }) => ($active ? 1 : 0.75)});
   opacity: ${({ $active }) => ($active ? 1 : 0.5)};
   z-index: ${({ $active }) => ($active ? 10 : 1)};
+  cursor: pointer;
 
   img {
     width: 100%;

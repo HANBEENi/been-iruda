@@ -9,14 +9,20 @@ import { styled } from 'styled-components';
 const LpCoverLayout = ({
   backgroundImage,
   children,
+  className,
 }: {
   backgroundImage: string;
   children?: React.ReactNode;
+  className?: string;
 }) => {
   const themeMode = useTheme().themeMode;
 
   return (
-    <Layout $backgroundImage={backgroundImage} $themeMode={themeMode}>
+    <Layout
+      $backgroundImage={backgroundImage}
+      $themeMode={themeMode}
+      className={className}
+    >
       {children}
     </Layout>
   );
@@ -25,10 +31,7 @@ export default LpCoverLayout;
 
 const Layout = styled.div<{ $backgroundImage: string; $themeMode: string }>`
   display: flex;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, calc(-50% + 18px));
+  z-index: 1003;
 
   width: fit-content;
   height: 100%;
