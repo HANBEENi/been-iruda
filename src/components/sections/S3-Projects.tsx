@@ -121,7 +121,6 @@ const Projects = () => {
           duration: 0.5,
           ease: 'power1.inOut',
         },
-        pin: true,
         anticipatePin: 1,
       },
     });

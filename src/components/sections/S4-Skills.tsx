@@ -13,7 +13,7 @@ const slideData = [
 const Skills = () => {
   return (
     <SectionLayout middleContents={<LpProjectCover />} rightContents={<></>}>
-      <Slide />
+      {/* <Slide /> */}
     </SectionLayout>
   );
 };
@@ -39,7 +39,6 @@ const SliderLayout = styled.div`
 
   height: 100%;
   width: fit-content;
-  border: 1px solid red;
 `;
 
 const SlideItem = styled.div<{ $backgroundImage: string }>`

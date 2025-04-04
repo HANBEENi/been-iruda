@@ -90,6 +90,7 @@ const ContactWrap = styled.div`
   justify-content: space-between;
   gap: 25px;
   padding: 50px 40px;
+  z-index: 1003;
 
   width: 350px;
   height: 100%;

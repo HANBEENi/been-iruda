@@ -37,7 +37,7 @@ const SectionLayout = ({ middleContents, rightContents, children }: Props) => {
         <LpStylus />
       )}
 
-      {children}
+      <div className="children">{children}</div>
     </Layout>
   );
 };
@@ -75,6 +75,11 @@ const Layout = styled.div<{ $paddingTop: number }>`
     left: 50%;
     transform: translate(-50%, 0);
     width: fit-content;
+  }
+
+  .children {
+    width: 100%;
+    height: 100%;
   }
 `;
 

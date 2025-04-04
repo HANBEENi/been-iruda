@@ -163,7 +163,6 @@ const Thumbnail = styled.div`
 
   background-image: url('/images/profile-portfolio.png');
   background-size: cover;
-  border: 1px solid black;
   border-radius: 15px;
 `;
 const Title = styled.div`
