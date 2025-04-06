@@ -17,7 +17,11 @@ const slideData = [
   { lpCover: '/images/lp-cover-intermatch.png' },
   { lpCover: '/images/lp-cover-photeto.png' },
 ];
-
+const projectData = [
+  { lpCover: '/images/lp-cover-back1.png' },
+  { lpCover: '/images/lp-cover-back2.png' },
+  { lpCover: '/images/lp-cover-back3.png' },
+];
 const Projects = () => {
   const slideRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -143,7 +147,7 @@ const Projects = () => {
         onMouseEnter={disablePageScroll}
         onMouseLeave={enablePageScroll}
       >
-        {slideData.map((data, idx) => (
+        {projectData.map((data, idx) => (
           <LpProjectCover
             key={idx}
             backgroundImage={data.lpCover}
