@@ -4,6 +4,7 @@ export interface ContactData {
   link: string;
 }
 
+/** Contact 데이터 */
 export const contactData: ContactData[] = [
   {
     title: '이메일',
