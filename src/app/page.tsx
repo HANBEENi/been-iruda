@@ -1,6 +1,9 @@
+import ThemeButton from '@/components/common/ThemeButton';
+
 const HomePage = () => {
   return (
     <>
+      <ThemeButton />
       <></>
     </>
   );
