@@ -21,7 +21,7 @@ const lightTheme = {
   logo: '',
 
   // 마퀴 설정
-  maquee: {
+  marquee: {
     background: colorGuide.C03_pink_700,
     text: colorGuide.C02_black,
   },
@@ -45,7 +45,7 @@ const darkTheme = {
   logo: '',
 
   // 마퀴 설정
-  maquee: {
+  marquee: {
     background: colorGuide.C02_black,
     text: colorGuide.C03_pink_700,
   },
