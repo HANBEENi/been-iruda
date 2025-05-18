@@ -1,5 +1,7 @@
+import { AppLayout } from '@/components/layout/AppLayout';
+import { MusicProvider } from '@/context/MusicContext';
 import { ThemeContextProvider } from '@/context/ThemeContext';
-import GlobalStyle from '@/styles/GlobalStyle';
+import GlobalStyle from '@/styles/globalStyle';
 
 export const metadata = {
   title: 'Next.js',
@@ -16,7 +18,9 @@ export default function RootLayout({
       <body>
         <ThemeContextProvider>
           <GlobalStyle />
-          {children}
+          <MusicProvider>
+            <AppLayout>{children}</AppLayout>
+          </MusicProvider>
         </ThemeContextProvider>
       </body>
     </html>
