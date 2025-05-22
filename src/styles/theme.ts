@@ -16,9 +16,10 @@ const lightTheme = {
   background: {
     primary: colorGuide.C01_white,
     overlay: colorGuide.C06_overlay_white,
+    image: colorGuide.B01_vinyle_white,
   },
   text: colorGuide.C02_black,
-  logo: '',
+  logo: '/images/logo-black.png',
 
   // 마퀴 설정
   marquee: {
@@ -31,6 +32,14 @@ const lightTheme = {
     backgroundImage: '/images/theme-button-background.png',
     icon: '/images/theme-button-icon.png',
   },
+
+  // lp
+  lp: {
+    backgroundImage: '/images/lp-pink.png',
+  },
+
+  // 뮤직 타임라인 선색상
+  musicTimeLine: colorGuide.C07_overlay_black,
 };
 
 const darkTheme = {
@@ -40,9 +49,10 @@ const darkTheme = {
   background: {
     primary: colorGuide.C02_black,
     overlay: colorGuide.C07_overlay_black,
+    image: colorGuide.B02_vinyle_black,
   },
   text: colorGuide.C01_white,
-  logo: '',
+  logo: '/images/logo-white.png',
 
   // 마퀴 설정
   marquee: {
@@ -55,6 +65,14 @@ const darkTheme = {
     backgroundImage: '/images/theme-button-background-dark.png',
     icon: '/images/theme-button-icon-dark.png',
   },
+
+  // lp
+  lp: {
+    backgroundImage: '/images/lp-black.png',
+  },
+
+  // 뮤직 타임라인 선색상
+  musicTimeLine: colorGuide.C06_overlay_white,
 };
 
 export const theme = {
