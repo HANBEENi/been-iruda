@@ -23,8 +23,8 @@ export const LpCover = ({
 const Layout = styled.div<{ $isHome: boolean }>`
   display: flex;
   flex-direction: column;
-  padding: ${({ $isHome }) => ($isHome ? 'none' : '20px')};
-  gap: 15px;
+  justify-content: space-between;
+  padding: ${({ $isHome }) => ($isHome ? 'none' : '20px 20px 30px 20px')};
   aspect-ratio: 833/826;
   height: 100%;
 
