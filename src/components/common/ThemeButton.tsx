@@ -49,7 +49,7 @@ const ButtonContainer = styled.button`
   background-image: ${({ theme }) => `url(${theme.themeBtn.backgroundImage})`};
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 
   ${media.tablet} {
     display: none;
@@ -64,7 +64,7 @@ const IconWrapper = styled(motion.div)`
   align-items: center;
   position: absolute; // 버튼 내부에서 움직임
   left: 10px; // 기본 위치 설정
-  top: 6.5px;
+  top: 10px;
 
   width: 45px;
   aspect-ratio: 1/1;
