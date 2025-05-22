@@ -57,6 +57,13 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'LibreBarcode128';
+    src: url('/fonts/LibreBarcode128-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
     * {
         box-sizing: border-box;
         padding: 0;
