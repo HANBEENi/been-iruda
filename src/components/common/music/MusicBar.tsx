@@ -8,9 +8,7 @@
 
 /**
  * [TODO]
- * - 음악재생|재생정지 버튼 아이콘 설정 + 기능동작
- * - 셔플취소|셔플적용 버튼 아이콘 설정 + 기능동작
- * - 반복취소|반복적용 버튼 아이콘 설정 + 기능동작
+ * - 음악 재생 상태에 따라 재생버튼 아이콘 변화시키기(현재 가사 클릭해서 노래 재생되고있을때 재생아이콘 변화없음)
  */
 
 import { styled, useTheme } from 'styled-components';
@@ -55,7 +53,11 @@ export default MusicBar;
 // [2] 컨트롤 버튼셋 (셔플,이전,재생|정지,다음,반복)
 // ---------------------------------------
 
-export const MusicControls = () => {
+export const MusicControls = ({
+  isNotHeader = false,
+}: {
+  isNotHeader?: boolean;
+}) => {
   const {
     togglePlayPause,
     playNextTrack,
@@ -76,24 +78,36 @@ export const MusicControls = () => {
   };
 
   return (
-    <ControlLayout>
-      <ControlBtn onClick={() => setIsShuffle(!isShuffle)} $active={isShuffle}>
+    <ControlLayout $isNotHeader={isNotHeader}>
+      <ControlBtn
+        onClick={() => setIsShuffle(!isShuffle)}
+        $active={isShuffle}
+        $isNotHeader={isNotHeader}
+      >
         <ShuffleSVG />
       </ControlBtn>
 
-      <ControlBtn onClick={playPrevTrack}>
+      <ControlBtn onClick={playPrevTrack} $isNotHeader={isNotHeader}>
         <BackSVG />
       </ControlBtn>
 
-      <ControlBtn className="stop-play" onClick={togglePlayPause}>
+      <ControlBtn
+        className="stop-play"
+        onClick={togglePlayPause}
+        $isNotHeader={isNotHeader}
+      >
         {isPlaying ? <PlaySVG /> : <StopSVG />}
       </ControlBtn>
 
-      <ControlBtn onClick={playNextTrack}>
+      <ControlBtn onClick={playNextTrack} $isNotHeader={isNotHeader}>
         <NextSVG />
       </ControlBtn>
 
-      <ControlBtn onClick={cycleRepeatMode} $active={repeatMode === 'none'}>
+      <ControlBtn
+        onClick={cycleRepeatMode}
+        $active={repeatMode === 'none'}
+        $isNotHeader={isNotHeader}
+      >
         {repeatMode === 'all' || repeatMode === 'none' ? (
           <RepeatSVG />
         ) : (
@@ -152,13 +166,14 @@ const Layout = styled.div`
 const MusicBarBackground = styled(MusicBarBackgroundSVG)``;
 
 /* 뮤직컨트롤버튼셋 스타일 ----------------------------------------------------- */
-const ControlLayout = styled.div`
+const ControlLayout = styled.div<{ $isNotHeader: boolean }>`
   display: flex;
   align-items: center;
   gap: 30px;
   padding-bottom: 5px;
 
   height: 100%;
+  max-height: 60px;
 
   ${media.tablet} {
     gap: 25px;
@@ -181,10 +196,12 @@ const ControlLayout = styled.div`
 
     svg {
       circle {
-        fill: ${({ theme }) => theme.marquee.text};
+        fill: ${({ theme, $isNotHeader }) =>
+          !$isNotHeader ? theme.marquee.text : theme.text};
       }
       path {
-        fill: ${({ theme }) => theme.marquee.background};
+        fill: ${({ theme, $isNotHeader }) =>
+          !$isNotHeader ? theme.marquee.background : theme.background.primary};
       }
     }
 
@@ -200,9 +217,10 @@ const ControlLayout = styled.div`
 `;
 
 /** 컨트롤 버튼 */
-const ControlBtn = styled.div<{ $active?: boolean }>`
+const ControlBtn = styled.div<{ $active?: boolean; $isNotHeader: boolean }>`
   svg {
-    color: ${({ theme }) => theme.marquee.text};
+    color: ${({ theme, $isNotHeader }) =>
+      !$isNotHeader ? theme.marquee.text : theme.text};
     opacity: ${({ $active }) => ($active ? 0.5 : 1)};
     transition: opacity 0.2s ease;
   }
