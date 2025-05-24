@@ -1,5 +1,6 @@
 'use client';
 
+import { Footer } from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { S01_Intro } from '@/components/sections/S01.Intro';
 import { S02_MusicMe } from '@/components/sections/S02.MusicMe';
@@ -19,6 +20,9 @@ const HomePage = () => {
       <S03_Projects />
       <S04_Skills />
       <S05_Contact />
+
+      {/* 푸터 */}
+      <Footer />
     </Layout>
   );
 };
