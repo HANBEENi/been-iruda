@@ -51,7 +51,7 @@ const ButtonContainer = styled.button`
   background-repeat: no-repeat;
   background-size: contain;
 
-  ${media.tablet} {
+  ${media.mobile} {
     display: none;
   }
 
