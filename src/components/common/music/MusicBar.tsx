@@ -95,7 +95,17 @@ export const MusicControls = ({
         className="stop-play"
         onClick={togglePlayPause}
         $isNotHeader={isNotHeader}
+        style={{ backgroundImage: `url('/images/test123.png')` }}
       >
+        {/* <div
+          style={{
+            borderRadius: '50px',
+            width: '40px',
+            height: '40px',
+            backgroundImage: `url('/images/test123.png')`,
+            boxShadow: '4px 4px 10px 0 rgba(0,0,0,0.25)',
+          }}
+        ></div> */}
         {isPlaying ? <PlaySVG /> : <StopSVG />}
       </ControlBtn>
 
@@ -126,8 +136,9 @@ const Layout = styled.div`
   overflow: hidden;
 
   position: absolute;
-  left: 0;
+  left: -3%;
   top: 25px;
+  top: -2px;
 
   width: 100%;
 
@@ -143,7 +154,7 @@ const Layout = styled.div`
     height: 100%;
 
     svg {
-      width: 100%;
+      width: 120%;
       height: 100%;
     }
 
@@ -156,8 +167,11 @@ const Layout = styled.div`
     }
   }
   .music-controls {
-    height: 100%;
+    height: 50%;
     position: absolute;
+    left: 50%;
+    top: 25px;
+    transform: translateX(-30%);
     padding: 7px 0;
   }
 `;

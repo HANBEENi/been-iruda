@@ -1,8 +1,9 @@
 // src/components/common/SkillIcons.tsx
-import { SkillProps, skillData } from '@/data/skillData';
+import { SkillIconProps, skillIconData } from '@/data/skillIconData';
+import { media } from '@/styles/mediaQuery';
 import { styled } from 'styled-components';
 
-export const SkillIcon = ({ icon, name }: SkillProps) => {
+export const SkillIcon = ({ icon, name }: SkillIconProps) => {
   return (
     <Wrap>
       <Icon>{icon}</Icon>
@@ -11,7 +12,7 @@ export const SkillIcon = ({ icon, name }: SkillProps) => {
   );
 };
 
-export const SkillForm = Object.entries(skillData).reduce(
+export const SkillForm = Object.entries(skillIconData).reduce(
   (acc, [key, value]) => {
     acc[key] = <SkillIcon icon={value.icon} name={value.name} />;
     return acc;
@@ -26,6 +27,12 @@ const Wrap = styled.div`
   padding: 6px 10px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
+
+  width: fit-content;
+
+  ${media.mobile} {
+    padding: 3px 5px;
+  }
 `;
 
 const Icon = styled.div`
@@ -33,6 +40,11 @@ const Icon = styled.div`
   height: 18px;
   display: flex;
   align-items: center;
+
+  ${media.mobile} {
+    width: 15px;
+    height: 15px;
+  }
 
   svg {
     width: 100%;
@@ -44,4 +56,8 @@ const Name = styled.span`
   font-size: 12px;
   font-weight: 300;
   color: white;
+
+  ${media.mobile} {
+    font-size: 10px;
+  }
 `;

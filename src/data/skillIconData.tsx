@@ -12,11 +12,11 @@ import {
   TypeScriptSVG,
 } from '../../public/icons/SkillISVG';
 
-export interface SkillProps {
+export interface SkillIconProps {
   icon: JSX.Element;
   name: string;
 }
-export const skillData: Record<string, SkillProps> = {
+export const skillIconData: Record<string, SkillIconProps> = {
   Nextjs: {
     icon: <NextJSSVG />,
     name: 'Next.js',

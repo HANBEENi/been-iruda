@@ -11,21 +11,18 @@ export const ContentsLayout = ({
   style?: React.CSSProperties;
 }) => {
   return (
-    <Layout style={style}>
-      <Contents>{children}</Contents>
-    </Layout>
+    // <Layout style={style}>
+    <Contents style={style}>{children}</Contents>
+    // </Layout>
   );
 };
 
-const Layout = styled.div`
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-`;
 const Contents = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  z-index: 1;
 
   /* prettier-ignore */
   padding: calc(
@@ -35,8 +32,6 @@ const Contents = styled.div`
 
   ${media.mobile} {
     /* prettier-ignore */
-    margin-top: calc(${layoutGuide.musicBar_height.mobile} + 25px);
-    /* prettier-ignore */
     padding: calc(
         ${layoutGuide.musicBar_height.mobile} + 25px +${layoutGuide.padding
       .mobile}
@@ -45,5 +40,6 @@ const Contents = styled.div`
   }
 
   width: 100%;
+  min-height: 100vh;
   height: 100vh;
 `;

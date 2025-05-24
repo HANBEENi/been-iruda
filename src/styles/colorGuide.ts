@@ -34,7 +34,8 @@ export const layoutGuide = {
   musicBar_height: {
     // pc_tablet: '51.92px',
     pc_tablet: '61.92px',
-    mobile: '41.53px',
+    // mobile: '41.53px',
+    mobile: '44.57px',
   },
 
   z_index: {
