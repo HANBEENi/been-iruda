@@ -1,16 +1,67 @@
 // 뮤직바 배경이미지
 export const MusicBarBackgroundSVG = () => (
+  // <svg
+  //   width="676"
+  //   height="78"
+  //   viewBox="0 0 676 78"
+  //   fill="none"
+  //   xmlns="http://www.w3.org/2000/svg"
+  // >
+  //   <path
+  //     d="M0 0H0.00192736H676C646.355 0 624.844 11.4222 614.107 21.34C605.96 28.8659 595.186 45.8946 583.161 60.3441C571.136 74.7941 539.95 78.1326 532.637 77.996H149.069C129.526 77.996 110.757 65.8631 104.442 60.3441C96.2996 53.2289 84.0538 35.1393 62.0074 19.7042C39.9598 4.26923 11.483 0.136828 0 0Z"
+  //     fill="currentColor"
+  //   />
+  // </svg>
   <svg
-    width="676"
-    height="78"
-    viewBox="0 0 676 78"
+    width="756"
+    height="158"
+    viewBox="0 0 756 158"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d="M0 0H0.00192736H676C646.355 0 624.844 11.4222 614.107 21.34C605.96 28.8659 595.186 45.8946 583.161 60.3441C571.136 74.7941 539.95 78.1326 532.637 77.996H149.069C129.526 77.996 110.757 65.8631 104.442 60.3441C96.2996 53.2289 84.0538 35.1393 62.0074 19.7042C39.9598 4.26923 11.483 0.136828 0 0Z"
-      fill="currentColor"
-    />
+    <g filter="url(#filter0_d_893_697)">
+      <path
+        d="M40 36H40.0019H716C686.355 36 664.844 47.4222 654.107 57.34C645.96 64.8659 635.186 81.8946 623.161 96.3441C611.136 110.794 579.95 114.133 572.637 113.996H189.069C169.526 113.996 150.757 101.863 144.442 96.3441C136.3 89.2289 124.054 71.1393 102.007 55.7042C79.9598 40.2692 51.483 36.1368 40 36Z"
+        fill="#FF6297"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_d_893_697"
+        x="0"
+        y="0"
+        width="756"
+        height="158"
+        filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="4" />
+        <feGaussianBlur stdDeviation="20" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_893_697"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow_893_697"
+          result="shape"
+        />
+      </filter>
+    </defs>
   </svg>
 );
 
