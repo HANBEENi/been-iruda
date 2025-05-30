@@ -1,82 +1,182 @@
+'use client';
+
+import { useRef, useState, useEffect } from 'react';
+import { styled } from 'styled-components';
 import { LpCoverLayout } from '@/components/layout/LpCoverLayout';
 import { ContentsLayout } from '@/components/layout/ContentsLayout';
-import { styled } from 'styled-components';
-import LpCover_Beeniruda from '/public/images/cover-01.png';
+import { projectData } from '@/data/projectsData';
 import { colorGuide } from '@/styles/colorGuide';
 import { GithubSVG } from '../../../../public/icons/ObjectSVG';
 import { SkillForm } from '@/components/common/SkillForm';
 import { media } from '@/styles/mediaQuery';
+import SlideNav from './SlideNav';
+import type { RefCallback } from 'react';
 
 export const S03_Projects = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!scrollRef.current) return;
+      const scrollContainer = scrollRef.current;
+      const centerX =
+        scrollContainer.scrollLeft + scrollContainer.offsetWidth / 2;
+      const distances = cardRefs.current.map((el) =>
+        el ? Math.abs(el.offsetLeft + el.offsetWidth / 2 - centerX) : Infinity
+      );
+      const closest = distances.indexOf(Math.min(...distances));
+      setCurrentIndex(closest);
+    };
+
+    const container = scrollRef.current;
+    container?.addEventListener('scroll', handleScroll);
+    return () => container?.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToIndex = (idx: number) => {
+    const target = cardRefs.current[idx];
+    const container = scrollRef.current;
+    if (target && container) {
+      const scrollPos =
+        target.offsetLeft + target.offsetWidth / 2 - container.offsetWidth / 2;
+      container.scrollTo({ left: scrollPos, behavior: 'smooth' });
+    }
+  };
+
   return (
     <ContentsLayout>
-      <LpCoverLayout backgroundImageUrl={LpCover_Beeniruda.src}>
-        {/* Header */}
-        <Header>
-          <Left>
-            <Thumbnail />
-            <Title>
-              <p className="title">BEEN.IRUDA: 비니루다 | 빈,이루다</p>
-              <p className="descript">
-                <p>김한빈 포트폴리오 웹사이트입니다.</p>
-                <p>반응형 웹으로 제작되었습니다.</p>
-              </p>
-            </Title>
-          </Left>
-          <Right>
-            <Period>
-              <p>개발기간</p>
-              <p>2025.03 (2개월)</p>
-            </Period>
-            <LinkSet>
-              <span
-                className="type"
-                style={{ background: colorGuide.C01_white }}
+      <Wrapper>
+        <ScrollContainer ref={scrollRef}>
+          {projectData.map((project, idx) => (
+            <Slide
+              key={project.id}
+              ref={(el) => {
+                cardRefs.current[idx] = el;
+              }}
+              $active={currentIndex === idx}
+            >
+              <LpCoverLayout
+                backgroundImageUrl={project.thumbnail}
+                background={project.backgroundColor}
               >
-                개인
-              </span>
-              <span
-                className="site-link"
-                style={{ background: colorGuide.C05_blue_500 }}
-              >
-                🔗 사이트 바로가기
-              </span>
-              <span className="github-link">
-                <GithubSVG />
-              </span>
-            </LinkSet>
-          </Right>
-        </Header>
-
-        <Body>
-          <Preview></Preview>
-
-          <SkillSet>
-            {SkillForm.Nextjs}
-            {SkillForm.Nextjs}
-            {SkillForm.Nextjs}
-            {SkillForm.Nextjs}
-            {SkillForm.Nextjs}
-            {SkillForm.Nextjs}
-            {SkillForm.Nextjs}
-          </SkillSet>
-        </Body>
-
-        {/* Footer */}
-        <Footer>
-          <MyContribution>
-            <span># 기획 100%</span>
-            <span># 디자인 100%</span>
-            <span># 퍼블리싱 100%</span>
-          </MyContribution>
-          <Barcode>
-            <span>BEENIRUDA</span>
-          </Barcode>
-        </Footer>
-      </LpCoverLayout>
+                <Header>
+                  <Left>
+                    <Thumbnail
+                      style={{ backgroundImage: `url(${project.thumbnail})` }}
+                    />
+                    <Title>
+                      <p className="title">{project.title}</p>
+                      <p className="descript">
+                        {project.subtitle.map((line, idx) => (
+                          <p key={idx}>{line}</p>
+                        ))}
+                      </p>
+                    </Title>
+                  </Left>
+                  <Right>
+                    <Period>
+                      <p>개발기간</p>
+                      <p>{project.period}</p>
+                    </Period>
+                    <LinkSet>
+                      <span
+                        className="type"
+                        style={{ background: colorGuide.C01_white }}
+                      >
+                        {project.type}
+                      </span>
+                      {project.siteUrl && (
+                        <span
+                          className="site-link"
+                          style={{ background: colorGuide.C05_blue_500 }}
+                          onClick={() => window.open(project.siteUrl, '_blank')}
+                        >
+                          🔗 사이트 바로가기
+                        </span>
+                      )}
+                      {project.githubUrl && (
+                        <span
+                          className="github-link"
+                          onClick={() =>
+                            window.open(project.githubUrl, '_blank')
+                          }
+                        >
+                          <GithubSVG />
+                        </span>
+                      )}
+                    </LinkSet>
+                  </Right>
+                </Header>
+                <Body>
+                  <Preview />
+                  <SkillSet>
+                    {project.skills.map((skill, idx) => (
+                      <span key={idx}>
+                        {SkillForm[skill as keyof typeof SkillForm]}
+                      </span>
+                    ))}
+                  </SkillSet>
+                </Body>
+                <Footer>
+                  <MyContribution>
+                    {project.contribution.map((c, idx) => (
+                      <span key={idx}># {c}</span>
+                    ))}
+                  </MyContribution>
+                  <Barcode>
+                    <span>{project.barcode}</span>
+                  </Barcode>
+                </Footer>
+              </LpCoverLayout>
+            </Slide>
+          ))}
+        </ScrollContainer>
+        <SlideNav
+          projects={projectData.map((p) => ({
+            id: p.id,
+            thumbnail: p.thumbnail,
+          }))}
+          current={currentIndex}
+          onClick={scrollToIndex}
+        />
+      </Wrapper>
     </ContentsLayout>
   );
 };
+
+const Wrapper = styled.div`
+  position: relative;
+  height: 100%;
+`;
+
+const ScrollContainer = styled.div`
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+`;
+
+const Slide = styled.div<{ $active: boolean }>`
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100%;
+  scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  transform: scale(${({ $active }) => ($active ? 1 : 0.96)});
+`;
+
+const Layout = styled.div`
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  overflow-x: scroll;
+`;
 
 const Header = styled.div`
   position: relative;
@@ -249,7 +349,7 @@ const MyContribution = styled.div`
     padding: 4px 10px;
 
     border-radius: 30px;
-    background: ${({ theme }) => theme.text};
+    background: ${colorGuide.C02_black};
 
     font-size: 11px;
     font-weight: 400;

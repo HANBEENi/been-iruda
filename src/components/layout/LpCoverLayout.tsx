@@ -7,13 +7,20 @@ export const LpCoverLayout = ({
   isHome = false,
   backgroundImageUrl,
   children,
+  background,
 }: {
   isHome?: boolean;
   backgroundImageUrl: string;
   children: ReactNode;
+  background?: string;
 }) => {
   return (
-    <Layout style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
+    <Layout
+      style={{
+        backgroundImage: `url(${backgroundImageUrl})`,
+        background: background,
+      }}
+    >
       <Contents $isHome={isHome}>{children}</Contents>
     </Layout>
   );
@@ -22,7 +29,7 @@ export const LpCoverLayout = ({
 const Layout = styled.div`
   aspect-ratio: 1/1;
   height: 100%;
-  /* overflow: auto; */
+  flex-shrink: 0;
   overflow: hidden;
 
   ${media.mobile} {
