@@ -77,5 +77,5 @@ const MarqueeInner = styled.div`
 
   color: ${({ theme }) => theme.marquee.text};
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
 `;
