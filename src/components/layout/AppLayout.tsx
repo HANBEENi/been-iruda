@@ -5,6 +5,7 @@ import { styled } from 'styled-components';
 import { media } from '@/styles/mediaQuery';
 import { BackgroundObjectSVG } from '../../../public/icons/ObjectSVG';
 import { ContentsLayout } from './ContentsLayout';
+import { MiniMusicView } from '../common/music/MiniMusicView';
 
 export const AppLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -19,6 +20,8 @@ export const AppLayout = ({ children }: { children: ReactNode }) => {
       </ContentsLayout>
 
       <Contents>{children}</Contents>
+
+      <MiniMusicView />
     </Layout>
   );
 };
