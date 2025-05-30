@@ -95,17 +95,7 @@ export const MusicControls = ({
         className="stop-play"
         onClick={togglePlayPause}
         $isNotHeader={isNotHeader}
-        style={{ backgroundImage: `url('/images/test123.png')` }}
       >
-        {/* <div
-          style={{
-            borderRadius: '50px',
-            width: '40px',
-            height: '40px',
-            backgroundImage: `url('/images/test123.png')`,
-            boxShadow: '4px 4px 10px 0 rgba(0,0,0,0.25)',
-          }}
-        ></div> */}
         {isPlaying ? <PlaySVG /> : <StopSVG />}
       </ControlBtn>
 

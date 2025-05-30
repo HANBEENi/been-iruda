@@ -35,11 +35,17 @@ const lightTheme = {
 
   // lp
   lp: {
+    // backgroundImage: '/images/lp-pink.png',
     backgroundImage: '/images/lp-pink.png',
   },
 
   // 뮤직 타임라인 선색상
   musicTimeLine: colorGuide.C07_overlay_black,
+
+  // 이미지
+  images: {
+    whatIsBeeniruda: '/images/what-is-beeniruda-light.png',
+  },
 };
 
 const darkTheme = {
@@ -73,6 +79,11 @@ const darkTheme = {
 
   // 뮤직 타임라인 선색상
   musicTimeLine: colorGuide.C06_overlay_white,
+
+  // 이미지
+  images: {
+    whatIsBeeniruda: '/images/what-is-beeniruda-dark.png',
+  },
 };
 
 export const theme = {

@@ -43,7 +43,7 @@ const Contents = styled.div`
 const Wrap = styled.div`
   .title {
     padding-bottom: 20px;
-    color: ${({ theme }) => theme.background.primary};
+    color: ${({ theme }) => theme.text};
   }
 
   .link {
