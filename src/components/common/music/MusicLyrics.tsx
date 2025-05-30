@@ -13,7 +13,10 @@ import { colorGuide } from '@/styles/colorGuide';
 import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
-const MusicLyrics = () => {
+interface Props {
+  isMini?: boolean; //기본은 full
+}
+const MusicLyrics = ({ isMini = false }: Props) => {
   const { currentTrackIndex, audioRef } = useMusic();
   const currentTrack = musicList[currentTrackIndex];
   const [currentTime, setCurrentTime] = useState(
@@ -90,7 +93,7 @@ const MusicLyrics = () => {
   }, [currentLyricIndex]);
 
   return (
-    <Layout ref={lyricsContainerRef}>
+    <Layout ref={lyricsContainerRef} $isMini={isMini}>
       {currentTrack.lyrics.map((lyric, index) =>
         lyric.text === '' ? (
           <br key={index} />
@@ -102,6 +105,7 @@ const MusicLyrics = () => {
             }}
             $isActive={index === currentLyricIndex}
             onClick={() => handleLyricClick(lyric.time)} // ✅ 클릭 시 해당 타임으로 이동
+            $isMini={isMini}
           >
             {lyric.text}
           </LyricLine>
@@ -113,23 +117,39 @@ const MusicLyrics = () => {
 
 export default MusicLyrics;
 
-const Layout = styled.div`
+const Layout = styled.div<{ $isMini: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   white-space: pre-line;
   overflow: scroll;
 
-  overflow: scroll;
+  width: 100%;
+  padding: ${({ $isMini }) => ($isMini ? '4px' : '0')};
+
+  ${({ $isMini }) =>
+    $isMini
+      ? `
+    max-height: 4.5em; /* 약 2~3줄 */
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0));
+  `
+      : ''}
 
   line-height: 1.5;
   color: ${({ theme }) => theme.text};
 `;
 
-const LyricLine = styled.p<{ $isActive: boolean }>`
+const LyricLine = styled.p<{ $isActive: boolean; $isMini: boolean }>`
   font-size: 16px;
   line-height: 180%;
   font-weight: ${({ $isActive }) => ($isActive ? '700' : '300')};
-  color: ${({ $isActive, theme }) =>
-    $isActive ? colorGuide.C03_pink_700 : theme.text};
+  color: ${({ $isActive, theme, $isMini }) =>
+    $isActive
+      ? $isMini
+        ? theme.text
+        : colorGuide.C03_pink_700
+      : $isMini
+      ? theme.musicTimeLine
+      : theme.text};
+  cursor: default;
 `;
