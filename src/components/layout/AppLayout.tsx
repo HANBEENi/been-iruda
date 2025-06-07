@@ -1,3 +1,5 @@
+// src/components/layout/AppLayout.tsx
+
 'use client';
 
 import { ReactNode } from 'react';
@@ -96,5 +98,7 @@ const Contents = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  overflow: scroll;
+  overflow: auto;
+
+  z-index: 1005;
 `;

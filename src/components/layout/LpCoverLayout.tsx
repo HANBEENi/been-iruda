@@ -1,3 +1,5 @@
+// src/components/layout/LpCoverLayout.tsx
+
 import { colorGuide } from '@/styles/colorGuide';
 import { media } from '@/styles/mediaQuery';
 import { ReactNode } from 'react';
@@ -29,7 +31,7 @@ export const LpCoverLayout = ({
 const Layout = styled.div`
   aspect-ratio: 1/1;
   height: 100%;
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
   overflow: hidden;
 
   ${media.mobile} {

@@ -1,3 +1,5 @@
+// src/components/common/layout/ContentsLayout.tsx
+
 import { layoutGuide } from '@/styles/colorGuide';
 import { media } from '@/styles/mediaQuery';
 import { ReactNode } from 'react';

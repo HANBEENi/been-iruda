@@ -1,3 +1,5 @@
+// src/components/sections/S01.Intro.tsx
+
 import { LpCoverLayout } from '@/components/layout/LpCoverLayout';
 import { colorGuide, layoutGuide } from '@/styles/colorGuide';
 import { styled } from 'styled-components';
@@ -8,38 +10,7 @@ import LpCoverImage from '/public/images/cover-01.png';
 import { media } from '@/styles/mediaQuery';
 import { useEffect, useRef } from 'react';
 
-gsap.registerPlugin(ScrollTrigger);
-// ✅ 애니메이션 정의
-const introScrollAnimation = (
-  sectionRef: React.RefObject<HTMLElement>,
-  contentRef: React.RefObject<HTMLElement>
-) => {
-  if (!sectionRef.current || !contentRef.current) return;
-
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: '+=100%',
-        scrub: true,
-        pin: true,
-      },
-    })
-    .to(contentRef.current, {
-      y: '100vh',
-      ease: 'none',
-    });
-};
-
 export const S01_Intro = () => {
-  const sectionRef = useRef<HTMLElement>(null); // ✅ 섹션 참조
-  const contentRef = useRef<HTMLDivElement>(null); // ✅ 움직일 앨범 콘텐츠 참조
-
-  useEffect(() => {
-    introScrollAnimation(sectionRef, contentRef);
-  }, []);
-
   return (
     <ContentsLayout>
       <LpCoverLayout isHome backgroundImageUrl={LpCoverImage.src}>
@@ -56,19 +27,6 @@ export const S01_Intro = () => {
     </ContentsLayout>
   );
 };
-
-// ✅ 섹션 감싸는 요소 (pin 대상)
-const Section = styled.section`
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-`;
-
-// ✅ 실제 이동 대상 콘텐츠
-const ContentWrap = styled.div`
-  width: 100%;
-  height: 100%;
-`;
 
 const Contents = styled.div`
   display: flex;
@@ -132,7 +90,7 @@ const Image = styled.img`
 `;
 
 const WhatIsBeenIruda = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: ${layoutGuide.padding.pc};
   right: ${layoutGuide.padding.pc};
 
@@ -146,7 +104,7 @@ const WhatIsBeenIruda = styled.div`
     width: 30%;
   }
 
-  height: 30%;
+  height: 200px;
   aspect-ratio: 334/328;
 
   background-image: url(${({ theme }) => theme.images.whatIsBeeniruda});

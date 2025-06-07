@@ -1,3 +1,5 @@
+// src/app/layout.tsx
+
 import { AppLayout } from '@/components/layout/AppLayout';
 import { MusicProvider } from '@/context/MusicContext';
 import { ThemeContextProvider } from '@/context/ThemeContext';

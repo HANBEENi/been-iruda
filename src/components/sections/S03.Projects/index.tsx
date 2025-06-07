@@ -1,3 +1,5 @@
+// src/components/sections/S03.Projects/index.tsx
+
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
