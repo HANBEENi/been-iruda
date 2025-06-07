@@ -4,33 +4,54 @@
 
 // [TODO: MusicControls가 항상 높이의 가운데 위치하도록 퍼블리싱 리팩토링]
 
+import AudioVisualizer from '@/components/common/music/AudioVisualizer';
 import { MusicControls } from '@/components/common/music/MusicBar';
 import MusicLyrics from '@/components/common/music/MusicLyrics';
 import MusicTimeLine from '@/components/common/music/MusicTimeLine';
 import { ContentsLayout } from '@/components/layout/ContentsLayout';
+import { useRef } from 'react';
 import { styled } from 'styled-components';
 
 export const S02_MusicMe = () => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   return (
     <ContentsLayout>
-      <MusicViewLayout>
-        <Thumbnail>
-          <img src="/images/thumbnail-01.png" alt="" />
-          <img src="/images/thumbnail-02.png" alt="" />
-        </Thumbnail>
+      <>
+        <MusicViewLayout>
+          <Thumbnail>
+            <img src="/images/thumbnail-01.png" alt="" />
+            <img src="/images/thumbnail-02.png" alt="" />
+          </Thumbnail>
 
-        <Title>
-          <p>단순히 코드가 아닌 가치를 담아</p>
-          <p>Made With Suno</p>
-        </Title>
+          <Title>
+            <p>단순히 코드가 아닌 가치를 담아</p>
+            <p>Made With Suno</p>
+          </Title>
 
-        <Controls>
-          <MusicTimeLine />
-          <MusicControls isNotHeader />
-        </Controls>
+          <Controls>
+            <MusicTimeLine />
+            <MusicControls isNotHeader />
+          </Controls>
 
-        <MusicLyrics />
-      </MusicViewLayout>
+          <MusicLyrics />
+        </MusicViewLayout>
+
+        {/* <div>
+          <audio
+            ref={audioRef}
+            src="/sounds/frontend-journey.mp3"
+            controls
+            style={{ width: 320, marginBottom: 16 }}
+          />
+          <AudioVisualizer
+            audioRef={audioRef}
+            barCount={32}
+            width={400}
+            height={160}
+          />
+        </div> */}
+      </>
     </ContentsLayout>
   );
 };
