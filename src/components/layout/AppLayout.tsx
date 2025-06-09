@@ -9,6 +9,7 @@ import { BackgroundObjectSVG } from '../../../public/icons/ObjectSVG';
 import { ContentsLayout } from './ContentsLayout';
 import { MiniMusicView } from '../common/music/MiniMusicView';
 import { BackVinyl } from '../common/BackVinyl';
+import Model3DViewer from '../common/Model3DViewer';
 
 export const AppLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -27,6 +28,7 @@ export const AppLayout = ({ children }: { children: ReactNode }) => {
       <MiniMusicView />
 
       <BackVinyl />
+      <Model3DViewer />
     </Layout>
   );
 };
