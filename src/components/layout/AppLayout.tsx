@@ -8,6 +8,7 @@ import { media } from '@/styles/mediaQuery';
 import { BackgroundObjectSVG } from '../../../public/icons/ObjectSVG';
 import { ContentsLayout } from './ContentsLayout';
 import { MiniMusicView } from '../common/music/MiniMusicView';
+import { BackVinyl } from '../common/BackVinyl';
 
 export const AppLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -24,6 +25,8 @@ export const AppLayout = ({ children }: { children: ReactNode }) => {
       <Contents>{children}</Contents>
 
       <MiniMusicView />
+
+      <BackVinyl />
     </Layout>
   );
 };
