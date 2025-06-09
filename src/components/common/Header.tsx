@@ -88,7 +88,7 @@ const LogoWrap = styled.div`
 const Logo = styled.img`
   display: flex;
 
-  padding-top: 10px;
+  padding-top: 15px;
 
   width: 170px;
   height: fit-content;
