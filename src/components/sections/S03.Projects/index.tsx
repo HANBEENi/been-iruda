@@ -112,7 +112,24 @@ export const S03_Projects = () => {
                   </Right>
                 </Header>
                 <Body>
-                  <Preview />
+                  <Preview>
+                    {project.previewVideo && (
+                      <video
+                        src={project.previewVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          borderRadius: 'inherit',
+                          background: '#000',
+                        }}
+                      />
+                    )}
+                  </Preview>
                   <SkillSet>
                     {project.skills.map((skill, idx) => (
                       <span key={idx}>
@@ -163,7 +180,7 @@ const ScrollContainer = styled.div`
 
 const Slide = styled.div<{ $active: boolean }>`
   flex-shrink: 0;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   scroll-snap-align: center;
   display: flex;
@@ -171,6 +188,9 @@ const Slide = styled.div<{ $active: boolean }>`
   justify-content: center;
   transition: transform 0.3s ease;
   transform: scale(${({ $active }) => ($active ? 1 : 0.96)});
+  ${media.mobile} {
+    padding: 40px;
+  }
 `;
 
 const Layout = styled.div`

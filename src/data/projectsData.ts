@@ -15,6 +15,7 @@ export interface ProjectData {
   barcode: string;
   contribution: string[];
   backgroundColor?: string;
+  previewVideo: string;
 }
 
 export const projectData: ProjectData[] = [
@@ -33,6 +34,7 @@ export const projectData: ProjectData[] = [
     thumbnail: '/images/thumbnail-01.png',
     barcode: 'BEENIRUDA',
     contribution: ['기획 100%', '디자인 100%', '퍼블리싱 100%'],
+    previewVideo: '/videos/video-01.mov',
   },
   {
     id: 'millo',
@@ -47,6 +49,7 @@ export const projectData: ProjectData[] = [
     barcode: 'MILLO',
     backgroundColor: '#15D96B',
     contribution: ['기획 100%', '디자인 100%', '퍼블리싱 100%'],
+    previewVideo: '/videos/video-01.mov',
   },
   {
     id: 'been-iruda',
@@ -63,6 +66,7 @@ export const projectData: ProjectData[] = [
     thumbnail: '/images/thumbnail-01.png',
     barcode: 'BEENIRUDA',
     contribution: ['기획 100%', '디자인 100%', '퍼블리싱 100%'],
+    previewVideo: '',
   },
   {
     id: 'millo',
@@ -77,5 +81,6 @@ export const projectData: ProjectData[] = [
     barcode: 'MILLO',
     backgroundColor: '#15D96B',
     contribution: ['기획 100%', '디자인 100%', '퍼블리싱 100%'],
+    previewVideo: '',
   },
 ];

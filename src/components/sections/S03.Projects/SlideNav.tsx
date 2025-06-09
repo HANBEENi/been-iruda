@@ -19,9 +19,12 @@ const SlideNav = ({ projects, current, onClick }: SlideNavProps) => {
           key={project.id}
           $active={idx === current}
           onClick={() => onClick(idx)}
-        >
-          <ThumbImage src={project.thumbnail} alt={project.id} />
-        </ThumbWrap>
+          style={{
+            background: `url(${project.thumbnail})`,
+            backgroundSize: '120%',
+            backgroundPosition: 'center',
+          }}
+        ></ThumbWrap>
       ))}
     </Nav>
   );
@@ -41,18 +44,16 @@ const Nav = styled.div`
 `;
 
 const ThumbWrap = styled.button<{ $active: boolean }>`
-  border: ${({ $active }) => ($active ? '3px solid white' : '1px solid gray')};
-  border-radius: 8px;
-  overflow: hidden;
-  padding: 0;
-  cursor: pointer;
-  transform: ${({ $active }) => ($active ? 'scale(1.1)' : 'scale(1)')};
-  transition: all 0.3s ease-in-out;
-`;
-
-const ThumbImage = styled.img`
+  border: ${({ $active }) =>
+    $active ? '3px solid white' : '1px solid #383838'};
+  border-radius: 7px;
   width: 60px;
   height: 60px;
-  object-fit: cover;
-  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  transform: ${({ $active }) => ($active ? 'scale(1.2)' : 'scale(0.9)')};
+  transition: all 0.3s ease-in-out;
+  background-size: cover;
+  background-position: center;
+  opacity: ${({ $active }) => ($active ? '1' : '0.5')};
 `;

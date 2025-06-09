@@ -28,7 +28,7 @@ export const AppLayout = ({ children }: { children: ReactNode }) => {
       <MiniMusicView />
 
       <BackVinyl />
-      <Model3DViewer />
+      {/* <Model3DViewer /> */}
     </Layout>
   );
 };
